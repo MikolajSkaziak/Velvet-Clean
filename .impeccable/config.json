@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "sketch/index.html"
+        ],
+        "createdAt": "2026-10-18T17:24:08.036Z",
+        "reason": "finish reviewer (impeccable-finish-reviewer, 2026-10-18): .expo__copy has clamp(32px,5vw,72px) padding; .faq__list and .contact border-top are section rules, not containers"
+      }
+    ]
+  }
+}

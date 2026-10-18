@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+
+# Editor / local tool state
+.omc/
+.claude/settings.local.json
+
+# Impeccable: keep config.json, design.json and surfaces/; the rest is per-session output
+.impeccable/review/
+.impeccable/ref/
+.impeccable/mocks/
+.impeccable/questions/
+.impeccable/build/
+.impeccable/hook.cache.json
+.impeccable/config.local.json
+
+# Raw photo downloads from the client's Facebook (16 MB); posts.md and manifest.json stay tracked
+materials/facebook/*.jpg
+
+# Generated: single-file client copy, rebuild with `python3 sketch/build-single.py`
+sketch/velvet-clean-szkic.html
+
+# Future Astro build
+node_modules/
+dist/
+.astro/
+.env
+.env.*

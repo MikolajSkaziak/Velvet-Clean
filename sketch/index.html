@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0d">
+<title>Velvet Clean · Pranie tapicerki Kalisz (szkic)</title>
+<meta name="description" content="Pranie tapicerki u Ciebie w domu: kanapy, narożniki, materace, fotele i wnętrza aut. Kalisz i okolice, dojazd i suszenie w cenie.">
+<link rel="icon" href="img/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@300;400;500&family=Saira:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hero-dirty-dark.webp" fetchpriority="high">
+<style>
+:root {
+  --silk: #0b0b0d;
+  --shadow: #050506;
+  --graphite: #2b2e33;
+  --slate: #4a515b;
+  --mist: #9aa0ab;
+  --ecru: #e9e4da;
+  --gold: #c8a35a;
+  --gold-soft: rgba(200, 163, 90, 0.35);
+
+  --display: "Saira Extra Condensed", "Arial Narrow", sans-serif;
+  --text: "Saira", system-ui, sans-serif;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  --gutter: clamp(20px, 5vw, 72px);
+  --max: 1320px;
+  --stitch: repeating-linear-gradient(90deg, var(--graphite) 0 6px, transparent 6px 11px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scrollbar-color: var(--graphite) var(--shadow); color-scheme: dark; }
+body {
+  margin: 0; background: var(--silk); color: var(--ecru);
+  font: 400 17px/1.65 var(--text); letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased; caret-color: var(--gold);
+}
+::selection { background: var(--gold); color: var(--silk); }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+p { margin: 0; }
+h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 300; text-transform: uppercase; line-height: 1; letter-spacing: 0.09em; text-wrap: balance; }
+h2 { font-size: clamp(2.6rem, 5.4vw, 4.6rem); }
+h3 { font-size: 1.7rem; font-weight: 400; letter-spacing: 0.08em; }
+:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+[id] { scroll-margin-top: 96px; }
+.wrap { width: min(var(--max), 100% - 2 * var(--gutter)); margin-inline: auto; }
+.label { font: 500 0.78rem/1.2 var(--text); letter-spacing: 0.22em; text-transform: uppercase; color: var(--mist); }
+.muted { color: var(--mist); }
+.stitch { height: 1px; background: var(--stitch); border: 0; margin: 0; }
+.section { padding-block: clamp(88px, 12vw, 168px); position: relative; }
+.section > .wrap > .stitch:first-child { margin-bottom: clamp(48px, 7vw, 88px); }
+
+/* ---------- controls: stitched frame + trailing cord ---------- */
+.btn {
+  position: relative; display: inline-flex; align-items: center; gap: 14px;
+  min-height: 58px; padding: 0 30px; margin-right: 44px;
+  font: 400 1.15rem/1 var(--display); letter-spacing: 0.24em; text-transform: uppercase; text-decoration: none; white-space: nowrap;
+  color: var(--ecru); background: var(--silk); border: 1px solid var(--slate); cursor: pointer;
+  transition: transform 160ms var(--ease-out), color 200ms ease, border-color 200ms ease;
+}
+.btn::before { content: ""; position: absolute; inset: 4px; border: 1px dashed var(--graphite); pointer-events: none; transition: border-color 200ms ease; }
+.btn::after {
+  content: ""; position: absolute; left: 100%; top: 50%; width: 40px; height: 9px; margin-top: -4.5px;
+  background: radial-gradient(circle at calc(100% - 13px) 50%, currentColor 3.5px, transparent 4px), linear-gradient(currentColor, currentColor) 0 50% / 100% 1px no-repeat;
+  margin-left: -10px; transition: transform 240ms var(--ease-out);
+}
+.btn:active { transform: scale(0.97); }
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn--gold { color: var(--gold); border-color: var(--gold); }
+.btn--gold::before { border-color: var(--gold-soft); }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { border-color: var(--ecru); }
+  .btn--gold:hover { border-color: var(--gold); color: #e3c27f; }
+  .btn:hover::after { transform: translateX(6px); }
+}
+.link { display: inline-flex; align-items: center; gap: 10px; font: 400 1.05rem/1 var(--display); letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; color: var(--ecru); padding-block: 10px; border-bottom: 1px solid var(--slate); transition: border-color 200ms ease; }
+@media (hover: hover) and (pointer: fine) { .link:hover { border-color: var(--ecru); } }
+.link svg { width: 16px; height: 16px; }
+
+/* ---------- ribbon + header ---------- */
+.ribbon { background: var(--shadow); color: var(--mist); font: 500 0.72rem/1 var(--text); letter-spacing: 0.18em; text-transform: uppercase; text-align: center; padding: 10px 16px; border-bottom: 1px solid var(--graphite); }
+.ribbon b { color: var(--ecru); font-weight: 500; }
+.ribbon__notes { display: none; margin-left: 8px; padding: 0; border: 0; background: none; color: var(--gold); font: inherit; letter-spacing: inherit; text-transform: inherit; text-decoration: underline; cursor: pointer; }
+.header { position: sticky; top: 0; z-index: 50; background: rgba(11, 11, 13, 0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.header__in { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 76px; }
+.brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.brand img { width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 0 0 1px var(--gold-soft), 0 0 0 4px var(--silk), 0 0 0 5px var(--graphite); }
+.brand span { font: 400 1.35rem/1 var(--display); letter-spacing: 0.42em; text-transform: uppercase; }
+.nav { position: relative; display: flex; gap: 36px; }
+.nav a { font: 400 1rem/1 var(--display); letter-spacing: 0.24em; text-transform: uppercase; text-decoration: none; color: var(--mist); padding-block: 12px; transition: color 200ms ease; }
+.nav a.is-active { color: var(--ecru); }
+@media (hover: hover) and (pointer: fine) { .nav a:hover { color: var(--ecru); } }
+.nav__cord { position: absolute; left: 0; bottom: 2px; height: 9px; width: 1px; pointer-events: none; opacity: 0; transform-origin: left center;
+  background: linear-gradient(var(--gold), var(--gold)) 0 50% / 100% 1px no-repeat;
+  transition: transform 320ms var(--ease-out), width 320ms var(--ease-out), opacity 200ms ease; }
+.nav__cord::after { content: ""; position: absolute; right: -4px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: var(--gold); }
+.header__phone { font: 400 1.15rem/1 var(--display); letter-spacing: 0.2em; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+.header__phone svg { width: 18px; height: 18px; color: var(--gold); }
+.header .stitch { position: absolute; left: 0; right: 0; bottom: 0; }
+@media (max-width: 1080px) { .nav { display: none; } }
+@media (max-width: 560px) {
+  .brand span { letter-spacing: 0.3em; font-size: 1.15rem; }
+  .header__phone span { display: none; }
+  .header__phone { width: 44px; height: 44px; justify-content: center; border: 1px solid var(--slate); }
+}
+
+/* ---------- hero ---------- */
+.hero { position: relative; height: 240vh; }
+.hero__stage { position: sticky; top: 76px; height: calc(100svh - 76px); overflow: hidden; }
+.hero__stage::before { /* one wide, soft silk sheen; no edges */
+  content: ""; position: absolute; inset: -20%; pointer-events: none;
+  background: radial-gradient(45% 55% at 22% 38%, rgba(255,255,255,0.03), transparent 100%);
+}
+.hero__photo { position: absolute; top: 0; bottom: 0; left: 34%; right: 0; }
+.hero__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 40% 60%; user-select: none; -webkit-user-drag: none; }
+.hero__photo { /* the photo dissolves into the page instead of meeting it at an edge */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 36%), linear-gradient(0deg, transparent 0%, #000 24%), linear-gradient(180deg, transparent 0%, #000 16%);
+  -webkit-mask-composite: source-in, source-in;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 36%), linear-gradient(0deg, transparent 0%, #000 24%), linear-gradient(180deg, transparent 0%, #000 16%);
+  mask-composite: intersect;
+}
+.hero__dirty { will-change: mask-image; }
+.hero__channel { position: absolute; top: 0; left: 0; width: 1px; pointer-events: none; z-index: 2;
+  background: repeating-linear-gradient(180deg, rgba(233,228,218,0.55) 0 6px, transparent 6px 11px); opacity: 0; transition: opacity 200ms ease; }
+.is-washing .hero__channel { opacity: 1; }
+.hero__copy { position: relative; z-index: 3; height: 100%; display: grid; align-content: center; gap: 28px; padding-bottom: 12vh; }
+.hero h1 { font-size: clamp(3.2rem, 6.2vw, 5.6rem); letter-spacing: 0.1em; line-height: 0.98; }
+.hero h1 span { display: block; white-space: nowrap; }
+.hero__lede { max-width: 30em; color: #cfcac0; font-size: 1.05rem; }
+.hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 28px; }
+.hero__rating { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; width: fit-content; }
+.stars { display: inline-flex; gap: 3px; color: var(--ecru); }
+.stars svg { width: 13px; height: 13px; }
+.hero__cord { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: visible; }
+.hero__cord .base { fill: none; stroke: var(--slate); stroke-width: 1; stroke-dasharray: 6 5; }
+.hero__cord .gold { fill: none; stroke: var(--gold); stroke-width: 2.2; stroke-linecap: round; }
+.hero__bead { fill: var(--gold); }
+.hero__bead-ring { fill: none; stroke: var(--gold-soft); stroke-width: 1; }
+.hero__status { position: absolute; z-index: 3; right: var(--gutter); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 12px; }
+.hero__status::before { content: ""; width: 26px; height: 1px; background: var(--slate); }
+.hero__hint { position: absolute; z-index: 3; left: var(--gutter); display: inline-flex; align-items: center; gap: 10px; transition: opacity 250ms ease; }
+.hero__hint svg { width: 14px; height: 14px; color: var(--gold); animation: tug 1.8s var(--ease-in-out) infinite; }
+.is-started .hero__hint { opacity: 0; }
+@keyframes tug { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
+.hero__labels { display: none; }
+.hero__viz { position: absolute; z-index: 3; right: var(--gutter); top: 22px; font-size: 0.72rem; color: var(--mist); }
+.hero__status { transition: opacity 250ms ease; }
+
+@media (max-width: 900px) {
+  .hero { height: 210vh; }
+  .hero__copy { align-content: start; padding: 28px 0 0; gap: 18px; height: auto; }
+  .hero h1 { font-size: clamp(2.6rem, 12.4vw, 4rem); letter-spacing: 0.08em; }
+  .hero__lede { font-size: 0.98rem; }
+  .hero__photo { top: auto; left: 0; height: 36%; bottom: 176px; }
+  .hero__photo {
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 24%), linear-gradient(0deg, transparent 0%, #000 22%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(180deg, transparent 0%, #000 24%), linear-gradient(0deg, transparent 0%, #000 22%);
+    mask-composite: intersect;
+  }
+  .hero__rating { display: none; }
+  .hero__actions .link { display: none; }
+  .hero__status { right: var(--gutter); }
+  .hero__stage:not(.is-started) .hero__status { opacity: 0; }
+}
+@media (max-width: 900px) and (max-height: 720px) { .hero__lede { display: none; } }
+
+/* ---------- results rail ---------- */
+.results__head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: end; margin-bottom: 56px; }
+.results__head p { max-width: 34em; }
+.rail { position: relative; }
+.rail__line { position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--stitch); }
+.rail__track { display: grid; grid-auto-flow: column; grid-auto-columns: min(520px, 82vw); gap: 28px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 0 18px; scrollbar-width: thin; overscroll-behavior-x: contain; }
+.piece { scroll-snap-align: start; position: relative; padding-top: 34px; margin: 0; }
+.piece::before { content: ""; position: absolute; left: 50%; top: -4px; width: 9px; height: 9px; margin-left: -4.5px; border-radius: 50%; background: var(--slate); }
+.piece::after { content: ""; position: absolute; left: 50%; top: 5px; width: 1px; height: 29px; background: var(--slate); }
+.piece__frame { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: var(--shadow); border: 1px solid var(--slate); padding: 9px; }
+.piece__frame::after, .route__media figure::after, .expo::after { content: ""; position: absolute; inset: 3px; border: 1px dashed var(--graphite); pointer-events: none; }
+.piece__frame div { position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: var(--shadow); }
+.piece__frame img { width: 100%; height: 100%; object-fit: cover; }
+.piece__state { position: absolute; left: 12px; bottom: 12px; padding: 7px 10px; background: rgba(5,5,6,0.78); font: 400 0.85rem/1 var(--display); letter-spacing: 0.26em; text-transform: uppercase; }
+.piece__state--before { border-bottom: 1px dashed var(--mist); }
+.piece__state--after { border-bottom: 1px solid var(--ecru); }
+.piece__meta { display: grid; grid-template-columns: 1fr 1fr; margin-top: 16px; border-top: 1px solid var(--graphite); }
+.piece__meta span { padding: 14px 0 0; }
+.piece__meta b { display: block; margin-top: 6px; font: 400 1.35rem/1.1 var(--display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ecru); }
+.rail__controls { display: flex; align-items: center; gap: 16px; margin-top: 36px; }
+.rail__btn { width: 52px; height: 52px; display: grid; place-items: center; background: none; color: var(--ecru); border: 1px solid var(--slate); cursor: pointer; transition: transform 160ms var(--ease-out), border-color 200ms ease; }
+.rail__btn:active { transform: scale(0.97); }
+.rail__btn svg { width: 18px; height: 18px; }
+@media (hover: hover) and (pointer: fine) { .rail__btn:hover { border-color: var(--ecru); } }
+.rail__controls .link { margin-left: auto; }
+@media (max-width: 900px) { .results__head { grid-template-columns: 1fr; } }
+
+/* ---------- price list ---------- */
+.prices { display: grid; grid-template-columns: 0.9fr 1.3fr; gap: clamp(40px, 7vw, 120px); align-items: start; }
+.prices__intro { display: grid; gap: 22px; position: sticky; top: 120px; }
+.prices__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--graphite); }
+.prices__list li { display: grid; grid-template-columns: auto 1fr auto; align-items: baseline; gap: 6px 18px; padding: 26px 0; border-bottom: 1px solid var(--graphite); }
+.prices__list h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
+.prices__list .lead { grid-column: 1 / -1; grid-row: 2; color: var(--mist); font-size: 0.95rem; }
+.prices__leader { position: relative; height: 1px; background: var(--stitch); align-self: center; min-width: 24px; margin-right: 8px; }
+.prices__leader::after { content: ""; position: absolute; right: -8px; top: -3px; width: 7px; height: 7px; border-radius: 50%; background: var(--slate); }
+.prices__price { font: 300 clamp(1.5rem, 2.4vw, 2rem)/1 var(--display); letter-spacing: 0.06em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.prices__price small { font-size: 0.6em; letter-spacing: 0.2em; color: var(--mist); margin-right: 6px; text-transform: uppercase; }
+.prices__price--quote { font-size: 1.05rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mist); }
+@media (max-width: 900px) { .prices { grid-template-columns: 1fr; } .prices__intro { position: static; } }
+
+/* ---------- route ---------- */
+.route { display: grid; gap: 56px; }
+.route__head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: end; }
+.route__steps { position: relative; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.route__steps::before { content: ""; position: absolute; left: 0; right: 0; top: 5px; height: 1px; background: repeating-linear-gradient(90deg, var(--slate) 0 6px, transparent 6px 11px); }
+.route__fill { position: absolute; left: 0; right: 0; top: 4.5px; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left center; transition: transform 1400ms var(--ease-in-out); }
+.route.is-in .route__fill { transform: scaleX(1); }
+.route__steps li:not(.route__fill) { position: relative; display: grid; gap: 10px; align-content: start; padding-top: 38px; }
+.route__steps li:not(.route__fill)::before { content: ""; position: absolute; left: 0; top: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--slate); box-shadow: 0 0 0 5px var(--silk); transition: background-color 300ms ease; transition-delay: calc(var(--i) * 300ms + 200ms); }
+.route.is-in .route__steps li:not(.route__fill)::before { background: var(--gold); }
+.route__steps p { color: var(--mist); font-size: 0.97rem; max-width: 22em; }
+.route__media { display: grid; grid-template-columns: 1.4fr 1fr; gap: 28px; align-items: end; }
+.route__media figure { position: relative; margin: 0; border: 1px solid var(--slate); padding: 9px; }
+.route__media img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; filter: grayscale(1) contrast(1.08) brightness(0.82); }
+.route__handles h3 { font-size: 1.4rem; margin-bottom: 18px; }
+.route__handles ul { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 28px; }
+.route__handles li { break-inside: avoid; padding: 12px 0; border-bottom: 1px solid var(--graphite); font-size: 0.97rem; }
+@media (max-width: 900px) {
+  .route__head, .route__media { grid-template-columns: 1fr; }
+  .route__steps { grid-template-columns: 1fr 1fr; row-gap: 48px; }
+  .route__steps::before, .route__fill { display: none; }
+}
+@media (max-width: 520px) { .route__handles ul { columns: 1; } }
+
+/* ---------- reviews ---------- */
+.reviews { display: grid; grid-template-columns: 0.8fr 1.4fr; gap: clamp(40px, 7vw, 120px); align-items: start; }
+.reviews__score { position: sticky; top: 120px; display: grid; gap: 22px; }
+.reviews__line { display: flex; align-items: center; gap: 14px; font: 300 1.6rem/1.2 var(--display); letter-spacing: 0.1em; text-transform: uppercase; }
+.reviews__line .stars svg { width: 15px; height: 15px; }
+.reviews__links { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 10px; }
+.quotes { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--graphite); }
+.quotes li { padding: 32px 0; border-bottom: 1px solid var(--graphite); display: grid; gap: 16px; }
+.quotes blockquote { margin: 0; font: 300 italic clamp(1.2rem, 1.8vw, 1.45rem)/1.55 var(--text); color: var(--ecru); max-width: 38em; }
+.quotes cite { font-style: normal; }
+@media (max-width: 900px) { .reviews { grid-template-columns: 1fr; } .reviews__score { position: static; } }
+
+/* ---------- expo ---------- */
+.expo { position: relative; display: grid; grid-template-columns: 1fr 1.1fr; border: 1px solid var(--slate); padding: 9px; }
+.expo img { width: 100%; height: 100%; min-height: 380px; object-fit: cover; filter: grayscale(1) contrast(1.08) brightness(0.78); }
+.expo__copy { padding: clamp(32px, 5vw, 72px); display: grid; gap: 22px; align-content: center; border-left: 1px solid var(--graphite); }
+.expo h2 { font-size: clamp(2.2rem, 4vw, 3.4rem); }
+@media (max-width: 860px) { .expo { grid-template-columns: 1fr; } .expo__copy { border-left: 0; border-top: 1px solid var(--graphite); } .expo img { min-height: 0; aspect-ratio: 16 / 10; } }
+
+/* ---------- faq ---------- */
+.faq { display: grid; grid-template-columns: 0.8fr 1.4fr; gap: clamp(40px, 7vw, 120px); }
+.faq__list { border-top: 1px solid var(--graphite); }
+.faq details { border-bottom: 1px solid var(--graphite); }
+.faq summary { list-style: none; cursor: pointer; position: relative; padding: 26px 76px 26px 0; font: 400 clamp(1.3rem, 2vw, 1.6rem)/1.2 var(--display); letter-spacing: 0.08em; text-transform: uppercase; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::before { content: ""; position: absolute; right: 0; top: 50%; width: 46px; height: 1px; background: var(--slate); }
+.faq summary::after { content: ""; position: absolute; right: 40px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: var(--mist); transition: transform 240ms var(--ease-out), background-color 200ms ease; }
+.faq details[open] summary::after { transform: translateX(36px); background: var(--gold); }
+.faq details p { padding: 0 76px 28px 0; color: #cfcac0; max-width: 40em; }
+@media (max-width: 900px) { .faq { grid-template-columns: 1fr; } }
+
+/* ---------- contact ---------- */
+.contact { position: relative; padding-block: clamp(96px, 13vw, 180px); border-top: 1px solid var(--graphite); overflow: hidden; }
+.contact::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(50% 80% at 85% 30%, rgba(255,255,255,0.035), transparent 70%); }
+.contact__grid { position: relative; display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px 72px; align-items: center; }
+.contact__main { display: grid; gap: 36px; }
+.contact__tag { position: relative; border: 1px solid var(--slate); padding: 34px 34px 30px; }
+.contact__tag::after { content: ""; position: absolute; inset: 4px; border: 1px dashed var(--graphite); pointer-events: none; }
+.contact__tag::before { content: ""; position: absolute; left: 50%; bottom: 100%; width: 1px; height: 120px; background: linear-gradient(var(--gold), var(--gold)); }
+.contact__tag dl { margin: 0; display: grid; }
+.contact__tag div { display: grid; grid-template-columns: 9em 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--graphite); }
+.contact__tag div:last-child { border-bottom: 0; }
+.contact__tag dd { margin: 0; font: 400 1.2rem/1.3 var(--display); letter-spacing: 0.1em; text-transform: uppercase; }
+.contact__bead { position: absolute; left: 50%; top: -128px; width: 11px; height: 11px; margin-left: -5.5px; border-radius: 50%; background: var(--gold); }
+@media (max-width: 900px) { .contact__grid { grid-template-columns: 1fr; } .contact__tag { margin-top: 40px; } .contact__tag::before { height: 40px; } .contact__bead { top: -48px; } .contact__tag div { grid-template-columns: 7em 1fr; } }
+.contact h2 { font-size: clamp(2.4rem, 4.6vw, 3.8rem); max-width: 14em; }
+.contact__phone { font: 300 clamp(3.6rem, 10vw, 6rem)/0.9 var(--display); letter-spacing: 0.06em; text-decoration: none; width: fit-content; font-variant-numeric: tabular-nums; }
+.contact__actions { display: flex; flex-wrap: wrap; gap: 20px 0; }
+
+/* ---------- footer ---------- */
+.footer { padding-block: 56px 132px; border-top: 1px solid var(--graphite); color: var(--mist); font-size: 0.92rem; }
+.footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 36px; }
+.footer h3 { font-size: 1.05rem; letter-spacing: 0.24em; color: var(--ecru); margin-bottom: 16px; }
+.footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.footer a { text-decoration: none; transition: color 200ms ease; }
+@media (hover: hover) and (pointer: fine) { .footer a:hover { color: var(--ecru); } }
+.footer__fine { margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--graphite); font-size: 0.8rem; }
+@media (max-width: 760px) { .footer__grid { grid-template-columns: 1fr; } }
+
+/* ---------- mobile call bar ---------- */
+.callbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 55; display: none; grid-template-columns: 1fr 1fr; gap: 10px;
+  padding: 12px 14px calc(12px + env(safe-area-inset-bottom)); background: rgba(5,5,6,0.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--graphite); }
+.callbar .btn { margin: 0; min-height: 52px; padding: 0 12px; justify-content: center; font-size: 1.02rem; letter-spacing: 0.18em; }
+.callbar .btn::after { display: none; }
+@media (max-width: 760px) { .callbar { display: grid; } }
+
+/* ---------- sketch notes ---------- */
+.note { display: none; position: relative; margin-top: 28px; padding: 16px 18px 16px 52px; border: 1px dashed var(--gold-soft); color: #d9cfb8; font-size: 0.92rem; line-height: 1.55; max-width: 640px; background: rgba(200,163,90,0.05); }
+.note::before { content: attr(data-n); position: absolute; left: 16px; top: 15px; width: 22px; height: 22px; border: 1px solid var(--gold); border-radius: 50%; color: var(--gold); font: 500 0.75rem/20px var(--text); text-align: center; }
+.show-notes .note { display: block; }
+.notes-toggle { position: fixed; right: 18px; bottom: 18px; z-index: 56; display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 16px; background: var(--shadow); border: 1px dashed var(--gold-soft); color: #d9cfb8; font: 500 0.72rem/1 var(--text); letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: transform 160ms var(--ease-out); }
+.notes-toggle:active { transform: scale(0.97); }
+.notes-toggle i { position: relative; width: 30px; height: 9px; background: linear-gradient(var(--slate), var(--slate)) 0 50% / 100% 1px no-repeat; }
+.notes-toggle i::after { content: ""; position: absolute; left: 0; top: 1px; width: 7px; height: 7px; border-radius: 50%; background: var(--mist); transition: transform 240ms var(--ease-out), background-color 200ms ease; }
+.show-notes .notes-toggle i::after { transform: translateX(23px); background: var(--gold); }
+@media (max-width: 760px) { .notes-toggle { display: none; } .ribbon__notes { display: inline; } .ribbon__long { display: none; } }
+
+/* capture-only: full-page screenshots collapse the pinned scroll run of the hero */
+.cap-full .hero { height: auto; }
+.cap-full .hero__stage { position: relative; top: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero { height: auto; }
+  .hero__stage { position: relative; top: 0; height: min(820px, 100svh); }
+  .hero__hint, .hero__status { display: none; }
+  .hero__labels { display: flex; gap: 18px; position: absolute; z-index: 3; right: var(--gutter); top: 24px; }
+  .route__fill { transition: none; }
+  .route__steps li:not(.route__fill)::before { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.7 6 6.5.6-4.9 4.3 1.5 6.4L12 16.8l-5.8 3.3 1.5-6.4-4.9-4.3 6.5-.6z" fill="currentColor"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M14 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v15M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+</svg>
+
+<div class="ribbon"><b>Szkic koncepcyjny v2</b><span class="ribbon__long"> · kierunek „czarny jedwab i złoty sznur” · treści i ceny do potwierdzenia</span><button class="ribbon__notes" type="button" data-notes-toggle>Pokaż notatki</button></div>
+
+<header class="header">
+  <div class="wrap header__in">
+    <a class="brand" href="#top" aria-label="Velvet Clean, początek strony"><img src="img/logo.webp" alt="" width="40" height="40"><span>Velvet Clean</span></a>
+    <nav class="nav" aria-label="Sekcje">
+      <a href="#realizacje">Realizacje</a>
+      <a href="#cennik">Cennik</a>
+      <a href="#przebieg">Przebieg</a>
+      <a href="#opinie">Opinie</a>
+      <a href="#kontakt">Kontakt</a>
+      <span class="nav__cord" aria-hidden="true"></span>
+    </nav>
+    <a class="header__phone" href="tel:+48539459182" aria-label="Zadzwoń: 539 459 182"><svg><use href="#i-phone"/></svg><span>539 459 182</span></a>
+  </div>
+  <hr class="stitch">
+</header>
+
+<main id="top">
+
+  <section class="hero" data-hero aria-label="Pranie tapicerki w Kaliszu">
+    <div class="hero__stage" data-stage>
+      <div class="hero__photo" data-photo>
+        <img src="img/hero-clean-dark.webp" alt="Jasna kanapa po praniu, w przyciemnionym wnętrzu" width="1440" height="1080">
+        <img class="hero__dirty" src="img/hero-dirty-dark.webp" alt="" aria-hidden="true" width="1440" height="1080" fetchpriority="high">
+      </div>
+      <span class="hero__channel" aria-hidden="true"></span>
+      <svg class="hero__cord" aria-hidden="true" data-cord>
+        <path class="base"></path>
+        <path class="gold"></path>
+        <circle class="hero__bead-ring" r="12"></circle>
+        <circle class="hero__bead" r="5.5"></circle>
+      </svg>
+      <span class="hero__status label" aria-hidden="true" data-status>Przed praniem</span>
+      <span class="hero__viz label">Wizualizacja</span>
+      <span class="hero__hint label" aria-hidden="true" data-hint><svg><use href="#i-down"/></svg>Przewiń, aby pociągnąć sznur</span>
+      <span class="hero__labels label" aria-hidden="true"><span>Lewa: po</span><span>Prawa: przed</span></span>
+
+      <div class="wrap hero__copy">
+        <h1><span>Czystość,</span> <span>którą widać</span> <span>i czuć.</span></h1>
+        <p class="hero__lede">Pranie tapicerki u Ciebie w domu: kanapy, narożniki, materace, fotele i wnętrza aut. Kalisz i okolice, dojazd i suszenie w cenie.</p>
+        <div class="hero__actions">
+          <a class="btn btn--gold" href="tel:+48539459182"><svg><use href="#i-phone"/></svg>Zadzwoń · 539 459 182</a>
+          <a class="link" href="https://wa.me/48539459182" target="_blank" rel="noopener">Wyślij zdjęcie do wyceny<svg><use href="#i-arrow"/></svg></a>
+        </div>
+        <a class="hero__rating label" href="https://maps.google.com/?cid=16333150134500351226" target="_blank" rel="noopener">
+          <span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
+          <span>5,0 · 13 ocen w Google</span>
+        </a>
+        <p class="note" data-n="1">Przewijając, klient „pociąga sznur” i pierze kanapę od lewej do prawej. W szkicu to kanapa z Waszej ulotki, przyciemniona do nastroju strony, a zabrudzenia dodaliśmy cyfrowo. W wersji docelowej zrobimy dedykowane zdjęcie w ciemnym wnętrzu.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="realizacje" aria-labelledby="h-realizacje">
+    <div class="wrap">
+      <hr class="stitch">
+      <div class="results__head">
+        <h2 id="h-realizacje">Przed i po</h2>
+        <p class="muted">Prawdziwe realizacje z Kalisza i okolic, sfotografowane telefonem na miejscu, tuż przed praniem i zaraz po nim.</p>
+      </div>
+      <div class="rail">
+        <span class="rail__line" aria-hidden="true"></span>
+        <div class="rail__track" data-rail tabindex="0" aria-label="Realizacje, przewiń w bok">
+          <figure class="piece">
+            <div class="piece__frame">
+              <div><img src="img/pair-materac-przed.webp" alt="Materac z żółtym zaciekiem przed praniem" loading="lazy"><span class="piece__state piece__state--before">Przed</span></div>
+              <div><img src="img/pair-materac-po.webp" alt="Ten sam materac po praniu, bez zacieku" loading="lazy"><span class="piece__state piece__state--after">Po</span></div>
+            </div>
+            <figcaption class="piece__meta label"><span>Mebel<b>Materac</b></span><span>Problem<b>Zaciek</b></span></figcaption>
+          </figure>
+          <figure class="piece">
+            <div class="piece__frame">
+              <div><img src="img/pair-fotel-przed.webp" alt="Żółty podłokietnik fotela z plamami przed praniem" loading="lazy"><span class="piece__state piece__state--before">Przed</span></div>
+              <div><img src="img/pair-fotel-po.webp" alt="Podłokietnik fotela po praniu" loading="lazy"><span class="piece__state piece__state--after">Po</span></div>
+            </div>
+            <figcaption class="piece__meta label"><span>Mebel<b>Fotel</b></span><span>Problem<b>Plamy</b></span></figcaption>
+          </figure>
+          <figure class="piece">
+            <div class="piece__frame">
+              <div><img src="img/pair-naroznik-przed.webp" alt="Ciemny narożnik z zaciekami przed praniem" loading="lazy"><span class="piece__state piece__state--before">Przed</span></div>
+              <div><img src="img/pair-naroznik-po.webp" alt="Ciemny narożnik po praniu" loading="lazy"><span class="piece__state piece__state--after">Po</span></div>
+            </div>
+            <figcaption class="piece__meta label"><span>Mebel<b>Narożnik</b></span><span>Problem<b>Zacieki</b></span></figcaption>
+          </figure>
+          <figure class="piece">
+            <div class="piece__frame">
+              <div><img src="img/pair-siedzisko-przed.webp" alt="Niebieskie siedzisko kanapy z zabrudzeniami przed praniem" loading="lazy"><span class="piece__state piece__state--before">Przed</span></div>
+              <div><img src="img/pair-siedzisko-po.webp" alt="Niebieskie siedzisko kanapy po praniu" loading="lazy"><span class="piece__state piece__state--after">Po</span></div>
+            </div>
+            <figcaption class="piece__meta label"><span>Mebel<b>Kanapa</b></span><span>Problem<b>Codzienny brud</b></span></figcaption>
+          </figure>
+          <figure class="piece">
+            <div class="piece__frame">
+              <div><img src="img/pair-auto-przed.webp" alt="Tylna kanapa samochodu przed praniem" loading="lazy"><span class="piece__state piece__state--before">Przed</span></div>
+              <div><img src="img/pair-auto-po.webp" alt="Tylna kanapa samochodu po praniu" loading="lazy"><span class="piece__state piece__state--after">Po</span></div>
+            </div>
+            <figcaption class="piece__meta label"><span>Mebel<b>Auto</b></span><span>Problem<b>Zabrudzenia</b></span></figcaption>
+          </figure>
+          <figure class="piece">
+            <div class="piece__frame">
+              <div><img src="img/pair-dywan-przed.webp" alt="Owalny dywan przed praniem" loading="lazy"><span class="piece__state piece__state--before">Przed</span></div>
+              <div><img src="img/pair-dywan-po.webp" alt="Owalny dywan po praniu" loading="lazy"><span class="piece__state piece__state--after">Po</span></div>
+            </div>
+            <figcaption class="piece__meta label"><span>Mebel<b>Dywan</b></span><span>Problem<b>Kurz i plamy</b></span></figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="rail__controls">
+        <button class="rail__btn" type="button" data-rail-prev aria-label="Poprzednia realizacja"><svg style="transform:scaleX(-1)"><use href="#i-arrow"/></svg></button>
+        <button class="rail__btn" type="button" data-rail-next aria-label="Następna realizacja"><svg><use href="#i-arrow"/></svg></button>
+        <a class="link" href="https://www.facebook.com/velvetclean24" target="_blank" rel="noopener">Więcej na Facebooku<svg><use href="#i-arrow"/></svg></a>
+      </div>
+      <p class="note" data-n="2">Zdjęcia z Waszego Facebooka, tam wrzucone jako kolaże. Jeśli macie oryginały „przed” i „po” jako osobne pliki, będą wyglądały lepiej.</p>
+    </div>
+  </section>
+
+  <section class="section" id="cennik" aria-labelledby="h-cennik" style="padding-top: 0">
+    <div class="wrap">
+      <hr class="stitch">
+      <div class="prices">
+        <div class="prices__intro">
+          <h2 id="h-cennik">Cennik</h2>
+          <p class="muted">Suszenie i dojazd w cenie. Dokładną kwotę podamy po zdjęciu mebla, bo zależy od jego wielkości i stopnia zabrudzenia.</p>
+          <a class="link" href="https://wa.me/48539459182" target="_blank" rel="noopener">Wycena ze zdjęcia<svg><use href="#i-arrow"/></svg></a>
+          <p class="note" data-n="3">Na Facebooku są różne ceny: kanapa 120 albo 150 zł, materac 80 albo 200 zł, a w jednym poście „od 50 zł”. Wpisaliśmy ceny z ulotki. Prosimy o aktualny cennik i kwoty za fotele, krzesła i dywany.</p>
+        </div>
+        <ul class="prices__list">
+          <li><h3>Kanapy i sofy</h3><span class="prices__leader" aria-hidden="true"></span><span class="prices__price"><small>od</small>120 zł</span><p class="lead">Plamy, zabrudzenia i zapachy z codziennego używania.</p></li>
+          <li><h3>Narożniki</h3><span class="prices__leader" aria-hidden="true"></span><span class="prices__price"><small>od</small>180 zł</span><p class="lead">Duże zestawy, także tkaniny typu flok i welur.</p></li>
+          <li><h3>Materace</h3><span class="prices__leader" aria-hidden="true"></span><span class="prices__price"><small>od</small>200 zł</span><p class="lead">Usuwamy roztocza i alergeny, dla zdrowszego snu.</p></li>
+          <li><h3>Tapicerka samochodowa</h3><span class="prices__leader" aria-hidden="true"></span><span class="prices__price"><small>od</small>200 zł</span><p class="lead">Kompleksowe pranie wnętrza: fotele i kanapa tylna.</p></li>
+          <li><h3>Fotele, pufy, krzesła</h3><span class="prices__leader" aria-hidden="true"></span><span class="prices__price prices__price--quote">Ze zdjęcia</span><p class="lead">Uszaki, fotele, pufy i krzesła tapicerowane.</p></li>
+          <li><h3>Dywany i chodniki</h3><span class="prices__leader" aria-hidden="true"></span><span class="prices__price prices__price--quote">Ze zdjęcia</span><p class="lead">Także dywany dziecięce.</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="przebieg" aria-labelledby="h-przebieg" style="padding-top: 0">
+    <div class="wrap route" data-route>
+      <hr class="stitch">
+      <div class="route__head">
+        <h2 id="h-przebieg">Od zdjęcia do suchej kanapy</h2>
+        <p class="muted">Cała wizyta odbywa się u Ciebie. Profesjonalny sprzęt do prania ekstrakcyjnego i atestowane środki, bezpieczne dla dzieci i zwierząt.</p>
+      </div>
+      <ol class="route__steps">
+        <li class="route__fill" aria-hidden="true"></li>
+        <li style="--i:0"><h3>Zdjęcie</h3><p>Wyślij zdjęcie mebla na WhatsApp lub Messengerze. Wycenę dostaniesz w kilka minut.</p></li>
+        <li style="--i:1"><h3>Termin</h3><p>Umawiamy dzień i przyjeżdżamy do Ciebie. W Kaliszu i okolicach dojazd jest gratis.</p></li>
+        <li style="--i:2"><h3>Pranie</h3><p>Pranie ekstrakcyjne wypłukuje brud z głębi tkaniny, nie tylko z wierzchu.</p></li>
+        <li style="--i:3"><h3>Suszenie</h3><p>Odciągamy maksimum wody i suszymy na miejscu. Mebel jest gotowy po kilku godzinach.</p></li>
+      </ol>
+      <div class="route__media">
+        <figure><img src="img/praca-1.webp" alt="Pranie ekstrakcyjne niebieskiej kanapy dyszą ekstraktora" loading="lazy"></figure>
+        <div class="route__handles">
+          <h3>Z czym sobie radzimy</h3>
+          <ul>
+            <li>Uporczywe plamy</li><li>Mocz zwierząt</li><li>Zapach kota</li><li>Sierść</li>
+            <li>Roztocza i alergeny</li><li>Pisaki i markery</li><li>Farby i lakiery</li><li>Kurz i codzienny brud</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="opinie" aria-labelledby="h-opinie" style="padding-top: 0">
+    <div class="wrap">
+      <hr class="stitch">
+      <div class="reviews">
+        <div class="reviews__score">
+          <h2 id="h-opinie">Opinie</h2>
+          <p class="reviews__line"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>5,0 · 13 ocen w Google</p>
+          <div class="reviews__links">
+            <a class="link" href="https://maps.google.com/?cid=16333150134500351226" target="_blank" rel="noopener">Wszystkie opinie<svg><use href="#i-arrow"/></svg></a>
+            <a class="link" href="https://g.page/r/CfpcBLaCAaviEBM/review" target="_blank" rel="noopener">Wystaw opinię<svg><use href="#i-arrow"/></svg></a>
+          </div>
+          <p class="note" data-n="4">Cytaty z Google lekko skrócone, z poprawionymi literówkami.</p>
+        </div>
+        <ul class="quotes">
+          <li><blockquote>„Fotel i narożnik wyprane, wyglądają jak nowe. Wszystko wysuszone, można od razu użytkować. Jeśli zajdzie potrzeba, na pewno tu wrócę.”</blockquote><cite class="label">Weronika M.</cite></li>
+          <li><blockquote>„Doskonała robota! Dokładnie, profesjonalnie, z pełnym zaangażowaniem. Widać wiedzę i fachowość. Właścicielka 4 kotów i psa.”</blockquote><cite class="label">Magdalena R.</cite></li>
+          <li><blockquote>„Świetny kontakt. Pan telefonicznie udzielił mi wszystkich informacji. Na miejscu bardzo profesjonalne podejście, sprawnie.”</blockquote><cite class="label">Ania W.</cite></li>
+          <li><blockquote>„Usługa wykonana perfekcyjnie. Punktualnie, dokładnie i z dużym zaangażowaniem.”</blockquote><cite class="label">Małgorzata J.</cite></li>
+          <li><blockquote>„Meble wyglądają jak nowe. Pełen profesjonalizm, pan wie, co robi! Kolejnym etapem będzie wnętrze mojego samochodu.”</blockquote><cite class="label">Kross P.</cite></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="h-expo">
+    <div class="expo">
+      <img src="img/expo.webp" alt="Sprzęt do prania tapicerki na stoisku targów Cleaning Expo w Poznaniu" loading="lazy">
+      <div class="expo__copy">
+        <h2 id="h-expo">Cleaning Expo 2026, Poznań</h2>
+        <p class="muted">W październiku byliśmy na targach Cleaning Expo i Cleaning Forum. Sprawdzaliśmy nowe środki i sprzęt, żeby prać skuteczniej i bezpieczniej dla Twojego domu.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq" aria-labelledby="h-faq">
+    <div class="wrap faq">
+      <div>
+        <h2 id="h-faq">Pytania</h2>
+        <p class="note" data-n="5">Odpowiedzi na podstawie Waszych postów. Prosimy sprawdzić, zwłaszcza tę o plamach.</p>
+      </div>
+      <div class="faq__list">
+        <details><summary>Ile kosztuje pranie?</summary><p>Kanapa od 120 zł, narożnik od 180 zł, materac od 200 zł, zawsze z suszeniem w cenie. Dokładną kwotę podamy po zdjęciu mebla.</p></details>
+        <details><summary>Jak długo schnie mebel?</summary><p>Odciągamy maksymalnie dużo wody i suszymy na miejscu, więc mebel jest gotowy do użytku po kilku godzinach.</p></details>
+        <details><summary>Czy środki są bezpieczne dla dzieci i zwierząt?</summary><p>Tak. Używamy atestowanych środków, bezpiecznych dla dzieci i zwierząt.</p></details>
+        <details><summary>Czy usuniecie każdą plamę?</summary><p>Radzimy sobie z większością plam, także z moczem zwierząt, pisakami i farbą. Przy bardzo starych plamach efekt zależy od tkaniny, a o tym uczciwie powiemy już przy wycenie.</p></details>
+        <details><summary>Gdzie dojeżdżacie?</summary><p>Działamy w Kaliszu i okolicach. Dojazd do klienta jest gratis.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="kontakt" aria-labelledby="h-kontakt">
+    <div class="wrap contact__grid">
+      <div class="contact__main">
+      <h2 id="h-kontakt">Umów pranie. Resztą zajmiemy się u Ciebie.</h2>
+      <a class="contact__phone" href="tel:+48539459182">539 459 182</a>
+      <div class="contact__actions">
+        <a class="btn btn--gold" href="tel:+48539459182"><svg><use href="#i-phone"/></svg>Zadzwoń</a>
+        <a class="btn" href="https://wa.me/48539459182" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn" href="https://m.me/velvetclean24" target="_blank" rel="noopener">Messenger</a>
+      </div>
+      </div>
+      <div class="contact__tag">
+        <span class="contact__bead" aria-hidden="true"></span>
+        <dl>
+          <div><dt class="label">Obszar</dt><dd>Kalisz i okolice</dd></div>
+          <div><dt class="label">Dojazd</dt><dd>Gratis</dd></div>
+          <div><dt class="label">Suszenie</dt><dd>W cenie</dd></div>
+          <div><dt class="label">Wycena</dt><dd>Ze zdjęcia, WhatsApp lub Messenger</dd></div>
+        </dl>
+      </div>
+      <p class="note" data-n="6" style="grid-column: 1 / -1">Domena velvetclean.pl, którą macie na jednej z ulotek, jest wolna i warto ją zarejestrować. Prosimy też potwierdzić e-mail: na Facebooku jest velveclean24@icloud.com, bez „t”.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <a class="brand" href="#top"><img src="img/logo.webp" alt="" width="40" height="40"><span>Velvet Clean</span></a>
+        <p style="margin-top:18px; max-width: 28em">Pranie tapicerki meblowej i samochodowej. Kalisz i okolice.</p>
+      </div>
+      <div>
+        <h3>Kontakt</h3>
+        <ul>
+          <li><a href="tel:+48539459182">+48 539 459 182</a></li>
+          <li><a href="mailto:velveclean24@icloud.com">velveclean24@icloud.com</a></li>
+          <li>ul. Górnośląska, 62-800 Kalisz</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Znajdź nas</h3>
+        <ul>
+          <li><a href="https://www.facebook.com/velvetclean24" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://maps.google.com/?cid=16333150134500351226" target="_blank" rel="noopener">Wizytówka Google</a></li>
+          <li><a href="https://g.page/r/CfpcBLaCAaviEBM/review" target="_blank" rel="noopener">Wystaw opinię</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer__fine">© 2026 Velvet Clean · Szkic koncepcyjny, nie jest to wersja produkcyjna.</p>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a class="btn btn--gold" href="tel:+48539459182">Zadzwoń</a>
+  <a class="btn" href="https://wa.me/48539459182" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+
+<button class="notes-toggle" type="button" aria-pressed="false" data-notes-toggle><i aria-hidden="true"></i>Notatki do szkicu</button>
+
+<script>
+(() => {
+  if (new URLSearchParams(location.search).has('fullpage')) document.documentElement.classList.add('cap-full');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+
+  /* ---- hero: pulling the cord washes the sofa ---- */
+  const hero = document.querySelector('[data-hero]');
+  const stage = hero.querySelector('[data-stage]');
+  const photo = hero.querySelector('[data-photo]');
+  const dirty = hero.querySelector('.hero__dirty');
+  const channel = hero.querySelector('.hero__channel');
+  const cord = hero.querySelector('[data-cord]');
+  const base = cord.querySelector('.base');
+  const gold = cord.querySelector('.gold');
+  const bead = cord.querySelector('.hero__bead');
+  const ring = cord.querySelector('.hero__bead-ring');
+  const status = hero.querySelector('[data-status]');
+  const hint = hero.querySelector('[data-hint]');
+  const viz = hero.querySelector('.hero__viz');
+
+  const START = 0.04, END = 0.8, FEATHER = 28;
+  let geo = null, target = 0, current = 0, raf = 0, lastText = '';
+
+  function layout() {
+    const s = stage.getBoundingClientRect();
+    const p = photo.getBoundingClientRect();
+    const W = s.width, H = s.height;
+    const px = p.left - s.left, py = p.top - s.top, pw = p.width, ph = p.height;
+    const wide = W > 900;
+    const y = wide ? py + ph * 0.86 : py + ph + 18;
+    cord.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const d = `M0 ${y + 6} C ${W * 0.18} ${y + 30}, ${W * 0.32} ${y - 18}, ${W * 0.5} ${y + 4} S ${W * 0.82} ${y - 22}, ${W} ${y - 4}`;
+    base.setAttribute('d', d); gold.setAttribute('d', d);
+    const total = gold.getTotalLength();
+    const table = [];
+    for (let i = 0; i <= 240; i++) { const l = total * i / 240; table.push([gold.getPointAtLength(l).x, l]); }
+    status.style.top = wide ? `${y - 46}px` : `${y + 16}px`;
+    hint.style.top = wide ? `${y - 46}px` : `${y + 16}px`;
+    viz.style.top = wide ? '' : `${py + ph * 0.28}px`;
+    geo = { W, H, px, py, pw, ph, total, table };
+  }
+
+  function lengthAtX(x) {
+    const t = geo.table;
+    if (x <= t[0][0]) return 0;
+    for (let i = 1; i < t.length; i++) {
+      if (t[i][0] >= x) { const [x0, l0] = t[i - 1], [x1, l1] = t[i]; return l0 + (l1 - l0) * (x - x0) / (x1 - x0 || 1); }
+    }
+    return geo.total;
+  }
+
+  function render(t) {
+    if (!geo) return;
+    const edge = -FEATHER + t * (geo.pw + 2 * FEATHER);        // px inside the photo
+    const x = geo.px + edge;                                    // px on the stage
+    const m = `linear-gradient(90deg, transparent ${edge - FEATHER}px, #000 ${edge + FEATHER}px)`;
+    dirty.style.webkitMaskImage = m; dirty.style.maskImage = m;
+
+    const len = lengthAtX(clamp(x, 14, geo.W - 14));
+    const pt = gold.getPointAtLength(len);
+    gold.style.strokeDasharray = `${len} ${geo.total}`;
+    bead.setAttribute('cx', pt.x); bead.setAttribute('cy', pt.y);
+    ring.setAttribute('cx', pt.x); ring.setAttribute('cy', pt.y);
+    channel.style.transform = `translate3d(${pt.x}px, ${geo.py}px, 0)`;
+    channel.style.height = `${Math.max(0, pt.y - geo.py - 14)}px`;
+
+    stage.classList.toggle('is-started', t > 0.01);
+    stage.classList.toggle('is-washing', t > 0.005 && t < 0.995);
+    const text = t <= 0.005 ? 'Przed praniem' : t >= 0.995 ? 'Po praniu' : `Pranie · ${Math.round(t * 100)}%`;
+    if (text !== lastText) { status.textContent = text; lastText = text; }
+  }
+
+  function tick() {
+    raf = 0;
+    current += (target - current) * 0.2;
+    if (Math.abs(target - current) < 0.0008) current = target;
+    render(current);
+    if (current !== target) raf = requestAnimationFrame(tick);
+  }
+
+  function onScroll() {
+    const r = hero.getBoundingClientRect();
+    const run = hero.offsetHeight - stage.offsetHeight;
+    const p = run > 0 ? clamp(-r.top / run) : 0;
+    target = clamp((p - START) / (END - START));
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
+
+  function setup() {
+    layout();
+    if (reduce.matches) { window.removeEventListener('scroll', onScroll); target = current = 0.5; render(0.5); stage.classList.remove('is-washing'); return; }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+  window.addEventListener('resize', () => { layout(); render(current); });
+  reduce.addEventListener('change', setup);
+  if (document.fonts) document.fonts.ready.then(() => { layout(); render(current); });
+  setup();
+  if (location.hash === '#debug') window.__wash = (t) => { target = current = t; render(t); };
+  const washHash = location.hash.match(/^#wash=([\d.]+)/);
+  if (washHash) setTimeout(() => { target = current = clamp(+washHash[1]); render(current); }, 60);
+
+  /* ---- nav: the active section wears the cord ---- */
+  const nav = document.querySelector('.nav');
+  const navCord = nav.querySelector('.nav__cord');
+  const links = [...nav.querySelectorAll('a')];
+  const byId = new Map(links.map((a) => [a.getAttribute('href').slice(1), a]));
+  function mark(a) {
+    links.forEach((l) => l.classList.toggle('is-active', l === a));
+    if (!a) { navCord.style.opacity = 0; return; }
+    navCord.style.opacity = 1;
+    navCord.style.width = `${a.offsetWidth}px`;
+    navCord.style.transform = `translateX(${a.offsetLeft}px)`;
+  }
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) mark(byId.get(e.target.id)); });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  byId.forEach((_, id) => { const el = document.getElementById(id); if (el) spy.observe(el); });
+  new IntersectionObserver(([e]) => { if (e.isIntersecting) mark(null); }, { rootMargin: '-45% 0px -50% 0px' }).observe(hero);
+
+  /* ---- results rail ---- */
+  const rail = document.querySelector('[data-rail]');
+  const step = () => rail.querySelector('.piece').offsetWidth + 28;
+  document.querySelector('[data-rail-prev]').addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: reduce.matches ? 'auto' : 'smooth' }));
+  document.querySelector('[data-rail-next]').addEventListener('click', () => rail.scrollBy({ left: step(), behavior: reduce.matches ? 'auto' : 'smooth' }));
+
+  /* ---- route cord draws once when it comes into view ---- */
+  const route = document.querySelector('[data-route]');
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { route.classList.add('is-in'); o.disconnect(); } }, { rootMargin: '0px 0px -25% 0px' }).observe(route);
+
+  /* ---- sketch notes ---- */
+  const toggles = document.querySelectorAll('[data-notes-toggle]');
+  const ribbonToggle = document.querySelector('.ribbon__notes');
+  toggles.forEach((btn) => btn.addEventListener('click', () => {
+    const on = document.body.classList.toggle('show-notes');
+    toggles.forEach((b) => b.setAttribute('aria-pressed', String(on)));
+    ribbonToggle.textContent = on ? 'Ukryj notatki' : 'Pokaż notatki';
+  }));
+})();
+</script>
+</body>
+</html>
