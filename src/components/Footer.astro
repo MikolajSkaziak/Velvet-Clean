@@ -3,13 +3,14 @@ import { Image } from 'astro:assets';
 import logo from '../assets/img/logo.webp';
 import { contact } from '../data/site';
 const year = new Date().getFullYear();
+const home = Astro.url.pathname === '/';
 ---
 
 <footer class="footer">
   <div class="wrap">
     <div class="grid">
       <div>
-        <a class="brand" href="#top"><Image src={logo} alt="" width={80} height={80} class="brand__logo" /><span>Velvet Clean</span></a>
+        <a class="brand" href={home ? '#top' : '/'}><Image src={logo} alt="" width={80} height={80} class="brand__logo" /><span>Velvet Clean</span></a>
         <p class="about">Pranie tapicerki meblowej i samochodowej. {contact.area}.</p>
       </div>
       <div>
@@ -29,7 +30,7 @@ const year = new Date().getFullYear();
         </ul>
       </div>
     </div>
-    <p class="fine">© {year} Velvet Clean</p>
+    <p class="fine">© {year} Velvet Clean · <a href="/polityka-prywatnosci">Polityka prywatności</a></p>
   </div>
 </footer>
 
@@ -46,6 +47,7 @@ const year = new Date().getFullYear();
   ul a { display: inline-block; padding-block: 6px; }
   ul { gap: 2px; }
   @media (hover: hover) and (pointer: fine) { a:hover { color: var(--ink); } }
+  .fine a { text-decoration: underline; text-underline-offset: 3px; display: inline-block; padding-block: 6px; }
   .fine { margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 0.8rem; }
   @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
 </style>

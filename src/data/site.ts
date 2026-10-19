@@ -32,6 +32,15 @@ export const contact = {
 
 export const rating = { score: '5,0', count: 13 };
 
+/**
+ * Privacy policy facts. The owner works as a private person (no company, no NIP yet),
+ * so the data controller is him by name.
+ */
+export const legal = {
+  controllerName: 'Pavlo Fedorovych',
+  policyDate: '19 października 2026',
+};
+
 export const nav = [
   { id: 'realizacje', label: 'Realizacje' },
   { id: 'cennik', label: 'Cennik' },

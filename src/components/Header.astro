@@ -3,16 +3,20 @@ import { Menu, Phone, X } from '@lucide/astro';
 import { Image } from 'astro:assets';
 import logo from '../assets/img/logo.webp';
 import { contact, nav } from '../data/site';
+
+// on sub-pages the section links and the logo lead back to the home page
+const home = Astro.url.pathname === '/';
+const to = (id: string) => (home ? `#${id}` : `/#${id}`);
 ---
 
 <header class="header">
   <div class="wrap header__in">
-    <a class="brand" href="#top" aria-label="Velvet Clean, początek strony">
+    <a class="brand" href={home ? '#top' : '/'} aria-label={home ? 'Velvet Clean, początek strony' : 'Velvet Clean, strona główna'}>
       <Image src={logo} alt="" width={80} height={80} class="brand__logo" loading="eager" />
       <span>Velvet Clean</span>
     </a>
     <nav class="nav" aria-label="Sekcje" data-nav>
-      {nav.map((item) => <a href={`#${item.id}`}>{item.label}</a>)}
+      {nav.map((item) => <a href={to(item.id)}>{item.label}</a>)}
       <span class="nav__cord" aria-hidden="true"></span>
     </nav>
     <div class="tools">
@@ -26,7 +30,7 @@ import { contact, nav } from '../data/site';
       </a>
     </div>
     <nav class="menu" id="menu-panel" aria-label="Menu" data-menu inert>
-      <ul>{nav.map((item) => <li><a href={`#${item.id}`}>{item.label}</a></li>)}</ul>
+      <ul>{nav.map((item) => <li><a href={to(item.id)}>{item.label}</a></li>)}</ul>
     </nav>
   </div>
   <hr class="stitch" />

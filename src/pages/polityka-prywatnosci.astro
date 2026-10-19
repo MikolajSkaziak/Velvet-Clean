@@ -1,0 +1,136 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CallBar from '../components/CallBar.astro';
+import { contact, legal } from '../data/site';
+
+const controller = legal.controllerName || '[imię i nazwisko właściciela — do uzupełnienia]';
+---
+
+<Base
+  title="Polityka prywatności · Velvet Clean"
+  description="Jak Velvet Clean przetwarza dane osobowe osób, które kontaktują się w sprawie prania tapicerki."
+>
+  <Header />
+  <main id="top" class="wrap policy">
+    <hr class="stitch" />
+    <h1>Polityka prywatności</h1>
+    <p class="muted">Obowiązuje od {legal.policyDate}.</p>
+
+    <section>
+      <h2>Kto przetwarza Twoje dane</h2>
+      <p>
+        Administratorem danych osobowych jest {controller}, prowadzący usługi prania tapicerki pod nazwą Velvet Clean
+        ({contact.area}). Usługi są świadczone przez osobę fizyczną, bez zarejestrowanej działalności gospodarczej.
+      </p>
+      <p>
+        Kontakt w sprawach danych osobowych: telefon <a href={contact.tel}>{contact.phoneIntl}</a>,
+        e-mail <a href={`mailto:${contact.email}`}>{contact.email}</a>.
+      </p>
+    </section>
+
+    <section>
+      <h2>Jakie dane zbieramy</h2>
+      <p>Strona nie ma formularzy ani kont użytkowników. Dane trafiają do nas tylko wtedy, gdy sam się z nami skontaktujesz:</p>
+      <ul>
+        <li>telefonicznie: numer telefonu i to, co nam przekażesz w rozmowie,</li>
+        <li>przez WhatsApp, Messenger lub e-mail: Twoja nazwa lub numer, treść wiadomości i przesłane zdjęcia mebli,</li>
+        <li>przy umawianiu wizyty: imię, adres, pod który mamy przyjechać, i termin.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Po co i na jakiej podstawie</h2>
+      <ul>
+        <li>
+          <strong>Wycena i umówienie prania</strong>: żeby odpowiedzieć na zapytanie, przygotować wycenę i wykonać usługę
+          (art. 6 ust. 1 lit. b RODO: działania przed zawarciem umowy i jej wykonanie).
+        </li>
+        <li>
+          <strong>Kontakt po usłudze i ewentualne reklamacje</strong>: na podstawie prawnie uzasadnionego interesu
+          administratora (art. 6 ust. 1 lit. f RODO).
+        </li>
+        <li>
+          <strong>Obowiązki wynikające z przepisów</strong>, jeśli takie powstaną, np. przechowywanie dokumentów sprzedaży
+          (art. 6 ust. 1 lit. c RODO).
+        </li>
+      </ul>
+      <p>Nie wykorzystujemy danych do marketingu, nie sprzedajemy ich i nie podejmujemy wobec Ciebie zautomatyzowanych decyzji.</p>
+    </section>
+
+    <section>
+      <h2>Jak długo je przechowujemy</h2>
+      <p>
+        Wiadomości i zdjęcia przechowujemy tak długo, jak to potrzebne do wyceny i wykonania usługi, a potem do czasu
+        przedawnienia ewentualnych roszczeń. Jeśli przepisy wymagają dłuższego przechowywania jakiegoś dokumentu,
+        przechowujemy go przez okres, który te przepisy wskazują. Wcześniej usuniemy dane na Twoją prośbę, jeśli nic nas
+        nie zobowiązuje do ich zachowania.
+      </p>
+    </section>
+
+    <section>
+      <h2>Komu je przekazujemy</h2>
+      <p>
+        Danych nie udostępniamy innym firmom w celach handlowych. Mogą do nich mieć dostęp dostawcy usług, z których
+        korzystamy, w zakresie potrzebnym do ich świadczenia: operator telefonii, Meta (WhatsApp, Messenger), Apple
+        (poczta iCloud) oraz firma utrzymująca tę stronę. Komunikatory i poczta działają według własnych zasad
+        prywatności, a część z tych firm może przetwarzać dane poza Europejskim Obszarem Gospodarczym, na podstawie
+        mechanizmów przewidzianych w RODO.
+      </p>
+    </section>
+
+    <section>
+      <h2>Ciasteczka i statystyki</h2>
+      <p>
+        Ta strona nie używa plików cookie, narzędzi analitycznych ani pikseli reklamowych. Czcionki i zdjęcia są
+        wczytywane z naszego serwera. Firma hostingowa może zapisywać techniczne logi serwera (np. adres IP i czas
+        wizyty) w celu zapewnienia bezpieczeństwa i działania strony.
+      </p>
+      <p>
+        Linki do Facebooka, Google, WhatsApp i Messengera prowadzą do zewnętrznych serwisów. Po ich otwarciu obowiązują
+        zasady prywatności tych serwisów.
+      </p>
+    </section>
+
+    <section>
+      <h2>Twoje prawa</h2>
+      <p>Masz prawo do:</p>
+      <ul>
+        <li>dostępu do swoich danych i otrzymania ich kopii,</li>
+        <li>sprostowania danych,</li>
+        <li>usunięcia danych,</li>
+        <li>ograniczenia przetwarzania,</li>
+        <li>przeniesienia danych,</li>
+        <li>sprzeciwu wobec przetwarzania opartego na prawnie uzasadnionym interesie.</li>
+      </ul>
+      <p>
+        Wystarczy zadzwonić lub napisać. Masz też prawo wnieść skargę do Prezesa Urzędu Ochrony Danych Osobowych
+        (ul. Stawki 2, 00-193 Warszawa).
+      </p>
+      <p>Podanie danych jest dobrowolne, ale bez nich nie przygotujemy wyceny ani nie umówimy wizyty.</p>
+    </section>
+
+    <section>
+      <h2>Zmiany</h2>
+      <p>Jeśli zmienimy sposób przetwarzania danych, np. po założeniu firmy, zaktualizujemy tę stronę i datę na górze.</p>
+    </section>
+
+    <p class="back"><a class="link" href="/">Wróć na stronę główną</a></p>
+  </main>
+  <Footer />
+  <CallBar />
+</Base>
+
+<style>
+  .policy { padding-block: clamp(56px, 8vw, 104px); max-width: min(var(--max), 100% - 2 * var(--gutter)); }
+  .policy > .stitch { margin-bottom: clamp(40px, 6vw, 72px); }
+  h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); letter-spacing: 0.08em; margin-bottom: 12px; }
+  section { max-width: 68ch; margin-top: clamp(36px, 5vw, 56px); display: grid; gap: 14px; }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: 0.08em; }
+  ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; }
+  li::marker { color: var(--blue); }
+  section a { color: var(--ink); text-decoration: underline; }
+  strong { font-weight: 500; }
+  .back { margin-top: clamp(48px, 7vw, 80px); }
+</style>

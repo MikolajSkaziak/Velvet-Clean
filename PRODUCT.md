@@ -24,6 +24,7 @@ Extraction cleaning done in the client's home, with drying included in the price
 
 ## Operating Context
 
+- Owner and data controller: Pavlo Fedorovych, working as a private person (no registered company, no NIP yet, as of 2026-10-19). Privacy policy at /polityka-prywatnosci.
 - Contact: phone/WhatsApp +48 539 459 182, Messenger (m.me/velvetclean24), email velveclean24@icloud.com (spelling unconfirmed).
 - Quote flow: client sends a photo of the furniture; owner replies with a price.
 - Service area: Kalisz i okolice. Google listing address: ul. Górnośląska, 62-800 Kalisz (service-area business).
