@@ -1,0 +1,45 @@
+---
+import { ArrowRight } from '@lucide/astro';
+import { contact, prices } from '../data/site';
+---
+
+<section class="section section--tight" id="cennik" aria-labelledby="h-cennik">
+  <div class="wrap">
+    <hr class="stitch" />
+    <div class="prices">
+      <div class="intro">
+        <h2 id="h-cennik">Cennik</h2>
+        <p class="muted">Suszenie i dojazd w cenie. Dokładną kwotę podamy po zdjęciu mebla, bo zależy od jego wielkości i stopnia zabrudzenia.</p>
+        <a class="link" href={contact.whatsapp} target="_blank" rel="noopener">Wycena ze zdjęcia<ArrowRight size={16} stroke-width={1.5} aria-hidden="true" /></a>
+      </div>
+      <ul class="list">
+        {prices.map(({ icon: Icon, ...p }) => (
+          <li>
+            <h3><Icon class="icon" size={22} stroke-width={1.5} aria-hidden="true" />{p.name}</h3>
+            <span class="leader" aria-hidden="true"></span>
+            {p.from
+              ? <span class="price"><small>od</small>{p.from} zł</span>
+              : <span class="price price--quote">Ze zdjęcia</span>}
+            <p class="note">{p.note}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .prices { display: grid; grid-template-columns: 0.9fr 1.3fr; gap: clamp(40px, 7vw, 120px); align-items: start; }
+  .intro { display: grid; gap: 22px; position: sticky; top: calc(var(--header) + 44px); }
+  .list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .list li { display: grid; grid-template-columns: minmax(0, max-content) minmax(24px, 1fr) auto; align-items: baseline; gap: 6px 18px; padding: 26px 0; border-bottom: 1px solid var(--line); }
+  h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); display: flex; align-items: center; gap: 14px; }
+  h3 :global(.icon) { flex: none; color: var(--blue); }
+  .note { grid-column: 1 / -1; grid-row: 2; color: var(--ink-soft); font-size: 0.95rem; }
+  .leader { position: relative; height: 1px; background: var(--stitch); align-self: center; min-width: 24px; margin-right: 8px; }
+  .leader::after { content: ""; position: absolute; right: -8px; top: -3px; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); }
+  .price { font: 300 clamp(1.5rem, 2.4vw, 2rem)/1 var(--display); letter-spacing: 0.06em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .price small { font-size: 0.6em; letter-spacing: 0.2em; color: var(--ink-soft); margin-right: 6px; text-transform: uppercase; }
+  .price--quote { font-size: 1.05rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
+  @media (max-width: 900px) { .prices { grid-template-columns: minmax(0, 1fr); } .intro { position: static; } }
+</style>

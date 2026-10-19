@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/img/logo.webp';
+import { contact } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <a class="brand" href="#top"><Image src={logo} alt="" width={80} height={80} class="brand__logo" /><span>Velvet Clean</span></a>
+        <p class="about">Pranie tapicerki meblowej i samochodowej. {contact.area}.</p>
+      </div>
+      <div>
+        <h3>Kontakt</h3>
+        <ul>
+          <li><a href={contact.tel}>{contact.phoneIntl}</a></li>
+          <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
+          <li>{contact.address}</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Znajdź nas</h3>
+        <ul>
+          <li><a href={contact.facebook} target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href={contact.googleMaps} target="_blank" rel="noopener">Wizytówka Google</a></li>
+          <li><a href={contact.googleReview} target="_blank" rel="noopener">Wystaw opinię</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine">© {year} Velvet Clean</p>
+  </div>
+</footer>
+
+<style>
+  .footer { padding-block: 56px 132px; color: var(--ink-soft); font-size: 0.92rem; }
+  .grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 36px; }
+  .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink); }
+  .brand :global(.brand__logo) { width: 42px; height: 42px; border-radius: 50%; box-shadow: 0 0 0 1px var(--line-strong); }
+  .brand span { font: 400 1.35rem/1 var(--display); letter-spacing: 0.42em; text-transform: uppercase; }
+  .about { margin-top: 18px; max-width: 28em; }
+  h3 { font-size: 1.05rem; letter-spacing: 0.24em; color: var(--ink); margin-bottom: 16px; }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; }
+  a { text-decoration: none; transition: color 200ms ease; }
+  ul a { display: inline-block; padding-block: 6px; }
+  ul { gap: 2px; }
+  @media (hover: hover) and (pointer: fine) { a:hover { color: var(--ink); } }
+  .fine { margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 0.8rem; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import work from '../assets/img/praca-1.webp';
+import { handles, steps } from '../data/site';
+---
+
+<section class="section section--tight" id="przebieg" aria-labelledby="h-przebieg">
+  <div class="wrap route" data-route>
+    <hr class="stitch" />
+    <div class="head">
+      <h2 id="h-przebieg">Od zdjęcia do suchej kanapy</h2>
+      <p class="muted">Cała wizyta odbywa się u Ciebie. Profesjonalny sprzęt do prania ekstrakcyjnego i atestowane środki, bezpieczne dla dzieci i zwierząt.</p>
+    </div>
+    <ol class="steps">
+      <li class="fill" aria-hidden="true"></li>
+      {steps.map(({ icon: Icon, ...s }, i) => <li class="step" style={`--i:${i}`}><h3><Icon class="icon" size={20} stroke-width={1.5} aria-hidden="true" />{s.title}</h3><p>{s.text}</p></li>)}
+    </ol>
+    <div class="media">
+      <figure class="frame"><Image src={work} alt="Pranie ekstrakcyjne niebieskiej kanapy dyszą ekstraktora" widths={[640, 960]} sizes="(max-width: 900px) 100vw, 55vw" /></figure>
+      <div class="handles">
+        <h3>Z czym sobie radzimy</h3>
+        <ul>{handles.map(({ icon: Icon, text }) => <li><Icon class="icon" size={18} stroke-width={1.5} aria-hidden="true" />{text}</li>)}</ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .route { display: grid; gap: 56px; }
+  .route > .stitch { margin-bottom: 0; }
+  .head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: end; }
+  .steps { position: relative; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .steps::before { content: ""; position: absolute; left: 0; right: 0; top: 5px; height: 1px; background: var(--stitch); }
+  .fill { position: absolute; left: 0; right: 0; top: 4.5px; height: 2px; background: var(--blue); transform: scaleX(0); transform-origin: left center; transition: transform 1400ms var(--ease-in-out); }
+  .route:global(.is-in) .fill { transform: scaleX(1); }
+  .step { position: relative; display: grid; gap: 10px; align-content: start; padding-top: 38px; }
+  .step::before { content: ""; position: absolute; left: 0; top: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--sand); box-shadow: 0 0 0 5px var(--paper); transition: background-color 300ms ease; transition-delay: calc(var(--i) * 300ms + 200ms); }
+  .route:global(.is-in) .step::before { background: var(--blue); }
+  .step h3 { display: flex; align-items: center; gap: 10px; }
+  .step h3 :global(.icon) { flex: none; color: var(--blue); }
+  .step p { color: var(--ink-soft); font-size: 0.97rem; max-width: 22em; }
+  .media { display: grid; grid-template-columns: 1.4fr 1fr; gap: 28px; align-items: end; }
+  .media figure { margin: 0; }
+  .media :global(img) { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; filter: saturate(0.75); }
+  .handles h3 { font-size: 1.4rem; margin-bottom: 18px; }
+  .handles ul { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 28px; }
+  .handles li { break-inside: avoid; display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 0.97rem; }
+  .handles :global(.icon) { flex: none; color: var(--blue); }
+  @media (max-width: 900px) {
+    .head, .media { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; row-gap: 48px; }
+    .steps::before, .fill { display: none; }
+  }
+  @media (max-width: 520px) { .handles ul { columns: 1; } }
+  @media (prefers-reduced-motion: reduce) { .fill, .step::before { transition: none; } }
+</style>
+
+<script>
+  const route = document.querySelector<HTMLElement>('[data-route]');
+  if (route) {
+    new IntersectionObserver(([e], o) => {
+      if (e.isIntersecting) { route.classList.add('is-in'); o.disconnect(); }
+    }, { rootMargin: '0px 0px -25% 0px' }).observe(route);
+  }
+</script>

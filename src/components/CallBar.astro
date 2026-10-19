@@ -1,0 +1,19 @@
+---
+import { contact } from '../data/site';
+---
+
+<div class="callbar">
+  <a class="btn btn--primary" href={contact.tel}>Zadzwoń</a>
+  <a class="btn" href={contact.whatsapp} target="_blank" rel="noopener">WhatsApp</a>
+</div>
+
+<style>
+  .callbar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 55; display: none; grid-template-columns: 1fr 1fr; gap: 10px;
+    padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
+    background: rgba(237, 231, 221, 0.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--line);
+  }
+  .callbar .btn { margin: 0; min-height: 52px; padding: 0 12px; justify-content: center; font-size: 1.02rem; letter-spacing: 0.18em; }
+  .callbar .btn::after { display: none; }
+  @media (max-width: 760px) { .callbar { display: grid; } }
+</style>

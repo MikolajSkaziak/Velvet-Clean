@@ -1,0 +1,126 @@
+---
+import { Menu, Phone, X } from '@lucide/astro';
+import { Image } from 'astro:assets';
+import logo from '../assets/img/logo.webp';
+import { contact, nav } from '../data/site';
+---
+
+<header class="header">
+  <div class="wrap header__in">
+    <a class="brand" href="#top" aria-label="Velvet Clean, początek strony">
+      <Image src={logo} alt="" width={80} height={80} class="brand__logo" loading="eager" />
+      <span>Velvet Clean</span>
+    </a>
+    <nav class="nav" aria-label="Sekcje" data-nav>
+      {nav.map((item) => <a href={`#${item.id}`}>{item.label}</a>)}
+      <span class="nav__cord" aria-hidden="true"></span>
+    </nav>
+    <div class="tools">
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-panel" data-menu-btn>
+        <Menu class="menu-btn__open" size={20} stroke-width={1.5} aria-hidden="true" />
+        <X class="menu-btn__close" size={20} stroke-width={1.5} aria-hidden="true" />
+        <span>Menu</span>
+      </button>
+      <a class="phone" href={contact.tel} aria-label={`Zadzwoń: ${contact.phoneDisplay}`}>
+        <Phone size={18} stroke-width={1.5} aria-hidden="true" /><span>{contact.phoneDisplay}</span>
+      </a>
+    </div>
+    <nav class="menu" id="menu-panel" aria-label="Menu" data-menu inert>
+      <ul>{nav.map((item) => <li><a href={`#${item.id}`}>{item.label}</a></li>)}</ul>
+    </nav>
+  </div>
+  <hr class="stitch" />
+</header>
+
+<style>
+  .header { position: sticky; top: 0; z-index: 50; background: rgba(237, 231, 221, 0.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+  .header__in { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 24px; height: var(--header); }
+  .tools { display: flex; align-items: center; gap: 12px; }
+  .header .stitch { position: absolute; left: 0; right: 0; bottom: 0; }
+  .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .brand :global(.brand__logo) { width: 42px; height: 42px; border-radius: 50%; box-shadow: 0 0 0 1px var(--line-strong); }
+  .brand span { font: 400 1.35rem/1 var(--display); letter-spacing: 0.42em; text-transform: uppercase; }
+  .nav { position: relative; display: flex; gap: 36px; }
+  .nav a { font: 400 1rem/1 var(--display); letter-spacing: 0.24em; text-transform: uppercase; text-decoration: none; color: var(--ink-soft); padding-block: 12px; transition: color 200ms ease; }
+  .nav a:global(.is-active) { color: var(--ink); }
+  @media (hover: hover) and (pointer: fine) { .nav a:hover { color: var(--ink); } }
+  .nav__cord {
+    position: absolute; left: 0; bottom: 2px; height: 9px; width: 1px; pointer-events: none; opacity: 0;
+    background: linear-gradient(var(--blue), var(--blue)) 0 50% / 100% 1px no-repeat;
+    transition: transform 320ms var(--ease-out), width 320ms var(--ease-out), opacity 200ms ease;
+  }
+  .nav__cord::after { content: ""; position: absolute; right: -4px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: var(--blue); }
+  .phone { font: 400 1.15rem/1 var(--display); letter-spacing: 0.2em; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; }
+  .phone svg { width: 18px; height: 18px; color: var(--blue); }
+  /* compact menu for phones and tablets: a popover that grows from its button */
+  .menu-btn {
+    display: none; align-items: center; gap: 10px; min-height: 44px; padding: 0 14px;
+    font: 400 1rem/1 var(--display); letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink);
+    background: none; border: 1px solid var(--line-strong); cursor: pointer; transition: transform 160ms var(--ease-out);
+  }
+  .menu-btn:active { transform: scale(0.97); }
+  .menu-btn :global(.menu-btn__close) { display: none; }
+  .menu-btn[aria-expanded="true"] :global(.menu-btn__open) { display: none; }
+  .menu-btn[aria-expanded="true"] :global(.menu-btn__close) { display: block; }
+  .menu {
+    position: absolute; right: 0; top: calc(100% + 8px); min-width: 240px; padding: 10px 22px;
+    background: var(--paper); border: 1px solid var(--line-strong); box-shadow: 0 18px 40px -24px rgba(13, 16, 40, 0.45);
+    transform-origin: top right; opacity: 0; transform: translateY(-4px) scale(0.97); visibility: hidden;
+    transition: opacity 140ms ease, transform 140ms var(--ease-out), visibility 0s linear 140ms;
+  }
+  .menu[data-open] { opacity: 1; transform: none; visibility: visible; transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out), visibility 0s; }
+  .menu ul { list-style: none; margin: 0; padding: 0; }
+  .menu li + li { border-top: 1px solid var(--line); }
+  .menu a { display: block; padding: 14px 0; font: 400 1.25rem/1 var(--display); letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; }
+  @media (max-width: 1080px) { .nav { display: none; } .menu-btn { display: inline-flex; } }
+  @media (min-width: 1081px) { .menu { display: none; } }
+  @media (max-width: 560px) {
+    .menu-btn span { display: none; }
+    .menu-btn { width: 44px; justify-content: center; padding: 0; }
+    .brand span { letter-spacing: 0.3em; font-size: 1.15rem; }
+    .phone span { display: none; }
+    .phone { width: 44px; height: 44px; justify-content: center; border: 1px solid var(--line-strong); }
+  }
+</style>
+
+<script>
+  // Compact menu: toggles from its button, closes on a link, Escape or a click outside.
+  const btn = document.querySelector<HTMLButtonElement>('[data-menu-btn]');
+  const menu = document.querySelector<HTMLElement>('[data-menu]');
+  if (btn && menu) {
+    const setOpen = (open: boolean) => {
+      btn.setAttribute('aria-expanded', String(open));
+      menu.toggleAttribute('data-open', open);
+      menu.inert = !open;
+    };
+    btn.addEventListener('click', () => setOpen(btn.getAttribute('aria-expanded') !== 'true'));
+    menu.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a')) setOpen(false); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') { setOpen(false); btn.focus(); }
+    });
+    document.addEventListener('click', (e) => {
+      if (btn.getAttribute('aria-expanded') === 'true' && !menu.contains(e.target as Node) && !btn.contains(e.target as Node)) setOpen(false);
+    });
+  }
+
+  // The section in the middle of the viewport wears the cord under its nav item.
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  if (nav) {
+    const cord = nav.querySelector<HTMLElement>('.nav__cord')!;
+    const links = [...nav.querySelectorAll<HTMLAnchorElement>('a')];
+    const byId = new Map(links.map((a) => [a.hash.slice(1), a]));
+    const mark = (a?: HTMLAnchorElement) => {
+      links.forEach((l) => l.classList.toggle('is-active', l === a));
+      if (!a) { cord.style.opacity = '0'; return; }
+      cord.style.opacity = '1';
+      cord.style.width = `${a.offsetWidth}px`;
+      cord.style.transform = `translateX(${a.offsetLeft}px)`;
+    };
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) mark(byId.get(e.target.id)); });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    byId.forEach((_, id) => { const el = document.getElementById(id); if (el) spy.observe(el); });
+    const hero = document.querySelector('[data-hero]');
+    if (hero) new IntersectionObserver(([e]) => { if (e.isIntersecting) mark(); }, { rootMargin: '-45% 0px -50% 0px' }).observe(hero);
+  }
+</script>

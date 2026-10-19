@@ -42,6 +42,7 @@ Extraction cleaning done in the client's home, with drying included in the price
 
 - Name: Velvet Clean, descriptor "pranie tapicerki". Existing logo: round badge, navy line art on cream with a beige sofa, blue cushions and four-point sparkles (`materials/brand/logo-original.webp`, raster, Gemini watermark; a gold/grey variant also exists). Owner's tagline: "Czystość, którą widać i czuć".
 - User directive: the site must read as a premium service for affluent, discerning clients, not as AI-generated template work.
+- User directive (2026-10-19): the site's colours come from the logo: navy lettering, pillow blue, badge cream, sofa beige.
 
 ## Evidence on Hand
 

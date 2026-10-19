@@ -2,10 +2,16 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "astro",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--port", "4321"],
+      "port": 4321
+    },
+    {
       "name": "sketch",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "4321", "--directory", "sketch"],
-      "port": 4321
+      "runtimeArgs": ["-m", "http.server", "4330", "--directory", "sketch"],
+      "port": 4330
     }
   ]
 }

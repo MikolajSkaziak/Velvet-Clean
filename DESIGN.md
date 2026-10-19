@@ -128,6 +128,8 @@ components:
     padding: "12px 14px"
 ---
 
+> **Out of date (2026-10-19).** The user replaced the black-silk/gold palette with the logo's colours (navy #0d1028, pillow blue #355472, badge cream #e4ddd3, sofa beige #d3c9bb) and the hero wipe with a crossfade, in the Astro build (`src/styles/global.css`, `src/components/Hero.astro`). Tokens and colour rules below still describe the earlier sketch; regenerate this file from the Astro build.
+
 # Design System: Velvet Clean
 
 ## Overview

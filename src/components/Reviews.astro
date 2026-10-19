@@ -1,0 +1,39 @@
+---
+import { ArrowRight, Star } from '@lucide/astro';
+import { contact, rating, reviews } from '../data/site';
+---
+
+<section class="section section--tight" id="opinie" aria-labelledby="h-opinie">
+  <div class="wrap">
+    <hr class="stitch" />
+    <div class="reviews">
+      <div class="score">
+        <h2 id="h-opinie">Opinie</h2>
+        <p class="line">
+          <span class="stars" aria-hidden="true">{[0, 1, 2, 3, 4].map(() => <Star size={15} stroke-width={0} fill="currentColor" aria-hidden="true" />)}</span>
+          {rating.score} · {rating.count} ocen w Google
+        </p>
+        <div class="links">
+          <a class="link" href={contact.googleMaps} target="_blank" rel="noopener">Wszystkie opinie<ArrowRight size={16} stroke-width={1.5} aria-hidden="true" /></a>
+          <a class="link" href={contact.googleReview} target="_blank" rel="noopener">Wystaw opinię<ArrowRight size={16} stroke-width={1.5} aria-hidden="true" /></a>
+        </div>
+      </div>
+      <ul class="quotes">
+        {reviews.map((r) => <li><blockquote>„{r.text}”</blockquote><cite class="label">{r.author}</cite></li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews { display: grid; grid-template-columns: 0.8fr 1.4fr; gap: clamp(40px, 7vw, 120px); align-items: start; }
+  .score { position: sticky; top: calc(var(--header) + 44px); display: grid; gap: 22px; }
+  .line { display: flex; align-items: center; gap: 14px; font: 300 1.6rem/1.2 var(--display); letter-spacing: 0.1em; text-transform: uppercase; }
+  .line .stars svg { width: 15px; height: 15px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 10px; }
+  .quotes { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+  .quotes li { padding: 32px 0; border-bottom: 1px solid var(--line); display: grid; gap: 16px; }
+  blockquote { margin: 0; font: 300 italic clamp(1.2rem, 1.8vw, 1.45rem)/1.55 var(--text); max-width: 38em; }
+  cite { font-style: normal; }
+  @media (max-width: 900px) { .reviews { grid-template-columns: 1fr; } .score { position: static; } }
+</style>

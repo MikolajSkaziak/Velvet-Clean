@@ -1,0 +1,77 @@
+---
+import { ArrowLeft, ArrowRight } from '@lucide/astro';
+import { Image } from 'astro:assets';
+import { contact, pairs } from '../data/site';
+---
+
+<section class="section" id="realizacje" aria-labelledby="h-realizacje">
+  <div class="wrap">
+    <hr class="stitch" />
+    <div class="head">
+      <h2 id="h-realizacje">Przed i po</h2>
+      <p class="muted">Prawdziwe realizacje z Kalisza i okolic, sfotografowane telefonem na miejscu, tuż przed praniem i zaraz po nim.</p>
+    </div>
+    <div class="rail">
+      <span class="rail__line" aria-hidden="true"></span>
+      <div class="track" data-rail tabindex="0" role="region" aria-label="Realizacje przed i po, przewiń w bok">
+        {pairs.map((p) => (
+          <figure class="piece">
+            <div class="frame piece__frame">
+              <div>
+                <Image src={p.before} alt={p.beforeAlt} widths={[360, 540]} sizes="(max-width: 640px) 41vw, 260px" />
+                <span class="state state--before">Przed</span>
+              </div>
+              <div>
+                <Image src={p.after} alt={p.afterAlt} widths={[360, 540]} sizes="(max-width: 640px) 41vw, 260px" />
+                <span class="state state--after">Po</span>
+              </div>
+            </div>
+            <figcaption class="meta label"><span>Mebel<b>{p.furniture}</b></span><span>Problem<b>{p.problem}</b></span></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+    <div class="controls">
+      <button class="arrow" type="button" data-rail-prev aria-label="Poprzednia realizacja"><ArrowLeft size={18} stroke-width={1.5} aria-hidden="true" /></button>
+      <button class="arrow" type="button" data-rail-next aria-label="Następna realizacja"><ArrowRight size={18} stroke-width={1.5} aria-hidden="true" /></button>
+      <a class="link" href={contact.facebook} target="_blank" rel="noopener">Więcej na Facebooku<ArrowRight size={16} stroke-width={1.5} aria-hidden="true" /></a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: end; margin-bottom: 56px; }
+  .head p { max-width: 34em; }
+  .rail { position: relative; }
+  .rail__line { position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--stitch); }
+  .track { display: grid; grid-auto-flow: column; grid-auto-columns: min(520px, 82vw); gap: 28px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 18px; scrollbar-width: thin; overscroll-behavior-x: contain; }
+  .piece { scroll-snap-align: start; position: relative; padding-top: 34px; margin: 0; }
+  .piece::before { content: ""; position: absolute; left: 50%; top: -4px; width: 9px; height: 9px; margin-left: -4.5px; border-radius: 50%; background: var(--ink-soft); }
+  .piece::after { content: ""; position: absolute; left: 50%; top: 5px; width: 1px; height: 29px; background: var(--line-strong); }
+  .piece__frame { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .piece__frame > div { position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: var(--sand); }
+  .piece__frame :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .state { position: absolute; left: 12px; bottom: 12px; padding: 7px 10px; background: rgba(237, 231, 221, 0.9); font: 400 0.85rem/1 var(--display); letter-spacing: 0.26em; text-transform: uppercase; }
+  .state--before { border-bottom: 1px dashed var(--ink-soft); }
+  .state--after { border-bottom: 1px solid var(--ink); }
+  .meta { display: grid; grid-template-columns: 1fr 1fr; margin-top: 16px; border-top: 1px solid var(--line); }
+  .meta span { padding-top: 14px; }
+  .meta b { display: block; margin-top: 6px; font: 400 1.35rem/1.1 var(--display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); }
+  .controls { display: flex; align-items: center; gap: 16px; margin-top: 36px; }
+  .controls .link { margin-left: auto; }
+  .arrow { width: 52px; height: 52px; display: grid; place-items: center; background: none; color: var(--ink); border: 1px solid var(--line-strong); cursor: pointer; transition: transform 160ms var(--ease-out), border-color 200ms ease; }
+  .arrow:active { transform: scale(0.97); }
+  @media (hover: hover) and (pointer: fine) { .arrow:hover { border-color: var(--ink); } }
+  @media (max-width: 900px) { .head { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+  const rail = document.querySelector<HTMLElement>('[data-rail]');
+  if (rail) {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+    const step = () => (rail.querySelector<HTMLElement>('.piece')?.offsetWidth ?? 0) + 28;
+    const go = (dir: number) => rail.scrollBy({ left: dir * step(), behavior: reduce.matches ? 'auto' : 'smooth' });
+    document.querySelector('[data-rail-prev]')?.addEventListener('click', () => go(-1));
+    document.querySelector('[data-rail-next]')?.addEventListener('click', () => go(1));
+  }
+</script>

@@ -1,0 +1,27 @@
+---
+import { faq } from '../data/site';
+---
+
+<section class="section" id="faq" aria-labelledby="h-faq">
+  <div class="wrap faq">
+    <h2 id="h-faq">Pytania</h2>
+    <div class="list">
+      {faq.map(({ icon: Icon, ...f }) => <details><summary><Icon class="icon" size={20} stroke-width={1.5} aria-hidden="true" />{f.q}</summary><p>{f.a}</p></details>)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq { display: grid; grid-template-columns: 0.8fr 1.4fr; gap: clamp(40px, 7vw, 120px); }
+  .list { border-top: 1px solid var(--line); }
+  details { border-bottom: 1px solid var(--line); }
+  summary { list-style: none; cursor: pointer; position: relative; padding: 26px 76px 26px 0; font: 400 clamp(1.3rem, 2vw, 1.6rem)/1.2 var(--display); letter-spacing: 0.08em; text-transform: uppercase; }
+  summary::-webkit-details-marker { display: none; }
+  summary { display: flex; align-items: center; gap: 14px; }
+  summary :global(.icon) { flex: none; color: var(--blue); }
+  summary::before { content: ""; position: absolute; right: 0; top: 50%; width: 46px; height: 1px; background: var(--line-strong); }
+  summary::after { content: ""; position: absolute; right: 40px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: var(--ink-soft); transition: transform 240ms var(--ease-out), background-color 200ms ease; }
+  details[open] summary::after { transform: translateX(36px); background: var(--blue); }
+  details p { padding: 0 76px 28px 0; color: var(--ink-soft); max-width: 40em; }
+  @media (max-width: 900px) { .faq { grid-template-columns: 1fr; } }
+</style>

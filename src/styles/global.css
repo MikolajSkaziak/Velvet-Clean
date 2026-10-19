@@ -1,0 +1,100 @@
+/* Colours are taken from the Velvet Clean logo: navy ink, pillow blue, badge cream, sofa beige. */
+:root {
+  --paper: #ede7dd;        /* page ground, a touch lighter than the badge */
+  --cream: #e4ddd3;        /* logo badge cream: mats, bands */
+  --sand: #d3c9bb;         /* logo sofa beige */
+  --ink: #0d1028;          /* logo navy lettering */
+  --ink-soft: #4a4f68;     /* secondary text, ~6.5:1 on paper */
+  --blue: #355472;         /* logo pillow blue: cord, active state */
+  --blue-soft: rgba(53, 84, 114, 0.32);
+  --line: rgba(13, 16, 40, 0.14);
+  --line-strong: rgba(13, 16, 40, 0.3);
+
+  --display: "Saira Extra Condensed", "Arial Narrow", sans-serif;
+  --text: "Saira", system-ui, sans-serif;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  --gutter: clamp(20px, 5vw, 72px);
+  --max: 1320px;
+  --header: 76px;
+  --stitch: repeating-linear-gradient(90deg, var(--line-strong) 0 6px, transparent 6px 11px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+/* keep anything scrolled into view (anchors, keyboard focus) clear of the sticky header */
+html { -webkit-text-size-adjust: 100%; scrollbar-color: var(--sand) var(--paper); scroll-padding-top: calc(var(--header) + 20px); }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 400 17px/1.65 var(--text); letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased; caret-color: var(--blue);
+}
+::selection { background: var(--ink); color: var(--paper); }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+p { margin: 0; }
+h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 300; text-transform: uppercase; line-height: 1; letter-spacing: 0.09em; text-wrap: balance; }
+h2 { font-size: clamp(2.6rem, 5.4vw, 4.6rem); }
+h3 { font-size: 1.7rem; font-weight: 400; letter-spacing: 0.08em; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+.skip { position: fixed; left: 16px; top: 12px; z-index: 100; padding: 12px 18px; background: var(--ink); color: var(--paper); font: 500 0.9rem/1 var(--text); text-decoration: none; transform: translateY(-160%); transition: transform 160ms var(--ease-out); }
+.skip:focus-visible { transform: none; outline-color: var(--paper); }
+[id] { scroll-margin-top: calc(var(--header) + 20px); }
+
+.wrap { width: min(var(--max), 100% - 2 * var(--gutter)); margin-inline: auto; }
+.label { font: 500 0.78rem/1.2 var(--text); letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); }
+.muted { color: var(--ink-soft); }
+.stitch { height: 1px; background: var(--stitch); border: 0; margin: 0; }
+.section { padding-block: clamp(88px, 12vw, 168px); position: relative; }
+.section--tight { padding-top: 0; }
+.section > .wrap > .stitch:first-child { margin-bottom: clamp(48px, 7vw, 88px); }
+.stars { display: inline-flex; gap: 3px; color: var(--ink); }
+
+/* Controls: stitched frame with a trailing cord and bead */
+.btn {
+  position: relative; display: inline-flex; align-items: center; gap: 14px;
+  min-height: 58px; padding: 0 30px; margin-right: 44px;
+  font: 400 1.15rem/1 var(--display); letter-spacing: 0.24em; text-transform: uppercase; text-decoration: none; white-space: nowrap;
+  color: var(--ink); background: transparent; border: 1px solid var(--line-strong); cursor: pointer;
+  transition: transform 160ms var(--ease-out), background-color 200ms ease, border-color 200ms ease;
+}
+.btn::before { content: ""; position: absolute; inset: 4px; border: 1px dashed var(--line); pointer-events: none; }
+.btn::after {
+  content: ""; position: absolute; left: 100%; top: 50%; width: 40px; height: 9px; margin: -4.5px 0 0 -10px;
+  background: radial-gradient(circle at calc(100% - 13px) 50%, var(--ink) 3.5px, transparent 4px), linear-gradient(var(--ink), var(--ink)) 0 50% / 100% 1px no-repeat;
+  transition: transform 240ms var(--ease-out);
+}
+.btn:active { transform: scale(0.97); }
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn--primary { color: var(--paper); background: var(--ink); border-color: var(--ink); }
+.btn--primary::before { border-color: rgba(237, 231, 221, 0.35); }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { border-color: var(--ink); }
+  .btn--primary:hover { background: #1b2148; }
+  .btn:hover::after { transform: translateX(6px); }
+}
+.link { display: inline-flex; align-items: center; gap: 10px; font: 400 1.05rem/1 var(--display); letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; color: var(--ink); padding-block: 10px; border-bottom: 1px solid var(--line-strong); transition: border-color 200ms ease; }
+@media (hover: hover) and (pointer: fine) { .link:hover { border-color: var(--ink); } }
+.link svg { width: 16px; height: 16px; }
+
+/* narrowest phones: buttons drop the trailing cord and loosen tracking so they fit */
+@media (max-width: 380px) {
+  .btn { margin-right: 0; padding: 0 18px; letter-spacing: 0.16em; }
+  .btn::after { display: none; }
+}
+
+/* reduced motion: keep fades and colour changes, drop movement and looping */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-property: opacity, color, background-color, border-color !important;
+  }
+}
+
+/* Stitched evidence frame: border, mat, inner dashed rule */
+.frame { position: relative; border: 1px solid var(--line-strong); background: var(--cream); padding: 9px; }
+.frame::after { content: ""; position: absolute; inset: 3px; border: 1px dashed var(--line-strong); pointer-events: none; }

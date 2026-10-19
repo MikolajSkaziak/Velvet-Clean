@@ -1,0 +1,253 @@
+---
+import { ArrowDown, ArrowRight, Phone, Star } from '@lucide/astro';
+import { Image } from 'astro:assets';
+import clean from '../assets/img/sofa-clean.webp';
+import dirty from '../assets/img/sofa-dirty.webp';
+import { contact, rating } from '../data/site';
+---
+
+<section class="hero" data-hero aria-label="Pranie tapicerki w Kaliszu">
+  <div class="stage" data-stage>
+    <div class="photo" data-photo>
+      <Image src={clean} alt="Niebieska kanapa po praniu, czysta" class="photo__clean" widths={[700, 1000, 1501]} sizes="(max-width: 900px) 100vw, 56vw" loading="eager" />
+      <Image src={dirty} alt="" aria-hidden="true" class="photo__dirty" widths={[700, 1000, 1501]} sizes="(max-width: 900px) 100vw, 56vw" loading="eager" fetchpriority="high" />
+      <canvas class="photo__canvas" aria-hidden="true"></canvas>
+    </div>
+    <svg class="cord" aria-hidden="true" data-cord>
+      <path class="cord__base"></path>
+      <path class="cord__fill"></path>
+      <circle class="cord__ring" r="12"></circle>
+      <circle class="cord__bead" r="5.5"></circle>
+    </svg>
+    <span class="status label" aria-hidden="true" data-status>Przed praniem</span>
+    <span class="hint label" aria-hidden="true" data-hint><ArrowDown size={14} stroke-width={1.5} aria-hidden="true" />Przewiń, aby pociągnąć sznur</span>
+
+    <div class="wrap copy">
+      <h1><span>Czystość,</span> <span>którą widać</span> <span>i czuć.</span></h1>
+      <p class="lede">Pranie tapicerki u Ciebie w domu: kanapy, narożniki, materace, fotele i wnętrza aut. {contact.area}, dojazd i suszenie w cenie.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href={contact.tel}><Phone size={18} stroke-width={1.5} aria-hidden="true" />Zadzwoń · {contact.phoneDisplay}</a>
+        <a class="link" href={contact.whatsapp} target="_blank" rel="noopener">Wyślij zdjęcie do wyceny<ArrowRight size={16} stroke-width={1.5} aria-hidden="true" /></a>
+      </div>
+      <a class="rating label" href={contact.googleMaps} target="_blank" rel="noopener">
+        <span class="stars" aria-hidden="true">{[0, 1, 2, 3, 4].map(() => <Star size={13} stroke-width={0} fill="currentColor" aria-hidden="true" />)}</span>
+        <span>{rating.score} · {rating.count} ocen w Google</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { position: relative; height: 240vh; }
+  .stage { position: sticky; top: var(--header); height: calc(100svh - var(--header)); overflow: hidden; }
+
+  /* cut-out sofa on the paper: the box keeps the cut-out's own proportions, so nothing is cropped */
+  .photo { position: absolute; right: calc(var(--gutter) - 24px); top: 50%; width: min(56vw, 980px); aspect-ratio: 1501 / 672; transform: translateY(-62%); }
+  .photo :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+  /* the canvas composites the two photos; the plain images stay as the no-JS fallback (dirty on top) */
+  .photo__canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; }
+  .photo[data-canvas] .photo__canvas { opacity: 1; }
+  /* opacity, not visibility: the clean photo's alt text must stay in the accessibility tree */
+  .photo[data-canvas] :global(img) { opacity: 0; }
+
+
+  .cord { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: visible; }
+  .cord__base { fill: none; stroke: var(--line-strong); stroke-width: 1; stroke-dasharray: 6 5; }
+  .cord__fill { fill: none; stroke: var(--blue); stroke-width: 2.2; stroke-linecap: round; }
+  .cord__bead { fill: var(--blue); }
+  .cord__ring { fill: none; stroke: var(--blue-soft); stroke-width: 1; }
+
+  .status { position: absolute; z-index: 3; right: var(--gutter); display: flex; align-items: center; gap: 12px; font-variant-numeric: tabular-nums; transition: opacity 250ms ease; }
+  .status::before { content: ""; width: 26px; height: 1px; background: var(--line-strong); }
+  .hint { position: absolute; z-index: 3; left: var(--gutter); display: inline-flex; align-items: center; gap: 10px; transition: opacity 250ms ease; }
+  .hint :global(svg) { color: var(--blue); animation: tug 1.8s var(--ease-in-out) infinite; }
+  .hint[data-gone] { opacity: 0; }
+  @media (prefers-reduced-motion: reduce) { .hint :global(svg) { animation: none; } }
+  @keyframes tug { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
+
+  .copy { position: relative; z-index: 3; height: 100%; display: grid; align-content: center; gap: 28px; padding-bottom: 12vh; }
+  h1 { font-size: clamp(3.2rem, 6.2vw, 5.6rem); letter-spacing: 0.1em; line-height: 0.98; }
+  h1 span { display: block; white-space: nowrap; }
+  .lede { max-width: 30em; color: var(--ink-soft); font-size: 1.05rem; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 28px; }
+  .rating { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; width: fit-content; min-height: 32px; }
+
+  @media (max-width: 900px) {
+    .hero { height: 210vh; }
+    .copy { align-content: start; padding: 28px 0 0; gap: 18px; height: auto; }
+    h1 { font-size: clamp(2.6rem, 12.4vw, 4rem); letter-spacing: 0.08em; }
+    .lede { font-size: 0.98rem; }
+    .photo { top: auto; right: 10px; left: 10px; width: auto; bottom: 196px; transform: none; }
+    .rating, .actions .link { display: none; }
+    .status[data-idle] { opacity: 0; }
+  }
+  @media (max-width: 900px) and (max-height: 720px) { .lede { display: none; } }
+  @media (max-width: 380px) { h1 span { white-space: normal; } }
+</style>
+
+<script>
+  // Scrolling pulls the cord. The clean sofa is painted first; the dirty one sits on top behind a soft,
+  // slightly wavering mask whose front moves left to right, like the wet edge behind an extraction nozzle.
+  const hero = document.querySelector<HTMLElement>('[data-hero]');
+  if (hero) {
+    const stage = hero.querySelector<HTMLElement>('[data-stage]')!;
+    const photo = hero.querySelector<HTMLElement>('[data-photo]')!;
+    const cleanImg = photo.querySelector<HTMLImageElement>('.photo__clean')!;
+    const dirtyImg = photo.querySelector<HTMLImageElement>('.photo__dirty')!;
+    const canvas = photo.querySelector<HTMLCanvasElement>('.photo__canvas')!;
+    const cord = hero.querySelector<SVGSVGElement>('[data-cord]')!;
+    const base = cord.querySelector<SVGPathElement>('.cord__base')!;
+    const fill = cord.querySelector<SVGPathElement>('.cord__fill')!;
+    const bead = cord.querySelector<SVGCircleElement>('.cord__bead')!;
+    const ring = cord.querySelector<SVGCircleElement>('.cord__ring')!;
+    const status = hero.querySelector<HTMLElement>('[data-status]')!;
+    const hint = hero.querySelector<HTMLElement>('[data-hint]')!;
+
+    const START = 0.04, END = 0.8;
+    const AMP = 0.045;      // how far the wet front wanders, as a share of the sofa width
+    const FEATHER = 0.035;  // softness of the front
+    const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+    const smooth = (a: number, b: number, x: number) => { const k = clamp((x - a) / (b - a)); return k * k * (3 - 2 * k); };
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+
+    const ctx = canvas.getContext('2d');
+    const layer = document.createElement('canvas');
+    const lctx = layer.getContext('2d');
+    // the mask is computed small and scaled up with smoothing, which softens it for free
+    const MW = 192, MH = 96;
+    const mask = document.createElement('canvas');
+    mask.width = MW; mask.height = MH;
+    const mctx = mask.getContext('2d');
+    const mdata = mctx?.createImageData(MW, MH);
+
+    const cleanBmp = document.createElement('canvas');
+    const dirtyBmp = document.createElement('canvas');
+    let total = 0, table: [number, number][] = [], photoLeft = 0, photoWidth = 0;
+    let target = 0, current = 0, raf = 0, lastText = '', ready = false;
+
+    function layout() {
+      const s = stage.getBoundingClientRect();
+      const p = photo.getBoundingClientRect();
+      const W = s.width, H = s.height, wide = W > 900;
+      const py = p.top - s.top, ph = p.height;
+      photoLeft = p.left - s.left; photoWidth = p.width;
+      // desktop: the cord runs low across the whole stage, under the copy; phone: just under the sofa
+      const y = wide ? Math.max(py + ph + 34, H * 0.86) : py + ph + 18;
+      cord.setAttribute('viewBox', `0 0 ${W} ${H}`);
+      const d = `M0 ${y + 6} C ${W * 0.18} ${y + 30}, ${W * 0.32} ${y - 18}, ${W * 0.5} ${y + 4} S ${W * 0.82} ${y - 22}, ${W} ${y - 4}`;
+      base.setAttribute('d', d);
+      fill.setAttribute('d', d);
+      total = fill.getTotalLength();
+      table = [];
+      for (let i = 0; i <= 200; i++) { const l = (total * i) / 200; table.push([fill.getPointAtLength(l).x, l]); }
+      status.style.top = `${y + 18}px`;
+      hint.style.top = `${y + 18}px`;
+
+      const dpr = Math.min(window.devicePixelRatio || 1, wide ? 2 : 1.5);
+      canvas.width = layer.width = cleanBmp.width = dirtyBmp.width = Math.max(1, Math.round(p.width * dpr));
+      canvas.height = layer.height = cleanBmp.height = dirtyBmp.height = Math.max(1, Math.round(p.height * dpr));
+      prescale();
+    }
+
+    function prescale() {
+      if (!ready) return;
+      for (const [bmp, img] of [[cleanBmp, cleanImg], [dirtyBmp, dirtyImg]] as const) {
+        const c = bmp.getContext('2d');
+        if (!c) continue;
+        c.imageSmoothingQuality = 'high';
+        c.clearRect(0, 0, bmp.width, bmp.height);
+        c.drawImage(img, 0, 0, bmp.width, bmp.height);
+      }
+    }
+
+    function lengthAtX(x: number) {
+      if (x <= table[0][0]) return 0;
+      for (let i = 1; i < table.length; i++) {
+        if (table[i][0] >= x) {
+          const [x0, l0] = table[i - 1], [x1, l1] = table[i];
+          return l0 + ((l1 - l0) * (x - x0)) / (x1 - x0 || 1);
+        }
+      }
+      return total;
+    }
+
+    // where the front sits, from just before the left edge to just past the right edge
+    const frontAt = (t: number) => -(AMP + FEATHER) + t * (1 + 2 * (AMP + FEATHER));
+
+    function paint(t: number) {
+      if (!ready || !ctx || !lctx || !mctx || !mdata) return;
+      const front = frontAt(t);
+      const px = mdata.data;
+      for (let y = 0; y < MH; y++) {
+        const v = y / MH;
+        // a few slow waves, drifting a little as the front moves, so the edge never reads as a ruler line
+        const wobble = Math.sin(v * 7.1 + 1.3 + t * 2.4) * 0.55 + Math.sin(v * 17.3 + 4.1 - t * 3.1) * 0.3 + Math.sin(v * 39.7 + 2.2) * 0.15;
+        const e = front + wobble * AMP;
+        for (let x = 0; x < MW; x++) {
+          const a = smooth(e - FEATHER, e + FEATHER, (x + 0.5) / MW);
+          px[(y * MW + x) * 4 + 3] = a * 255;
+        }
+      }
+      mctx.putImageData(mdata, 0, 0);
+
+      const w = canvas.width, h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+      ctx.drawImage(cleanBmp, 0, 0);
+      lctx.globalCompositeOperation = 'source-over';
+      lctx.clearRect(0, 0, w, h);
+      lctx.drawImage(dirtyBmp, 0, 0);
+      lctx.globalCompositeOperation = 'destination-in';
+      lctx.imageSmoothingEnabled = true;
+      lctx.imageSmoothingQuality = 'high';
+      lctx.drawImage(mask, 0, 0, w, h);
+      ctx.drawImage(layer, 0, 0);
+    }
+
+    function render(t: number) {
+      paint(t);
+      // the bead rides the cord directly under the cleaning front
+      const x = photoLeft + clamp(frontAt(t)) * photoWidth;
+      const len = clamp(lengthAtX(x), 14, total - 14);
+      const pt = fill.getPointAtLength(len);
+      fill.style.strokeDasharray = `${len} ${total}`;
+      bead.setAttribute('cx', String(pt.x)); bead.setAttribute('cy', String(pt.y));
+      ring.setAttribute('cx', String(pt.x)); ring.setAttribute('cy', String(pt.y));
+      hint.toggleAttribute('data-gone', t > 0.01);
+      status.toggleAttribute('data-idle', t <= 0.01);
+      const text = t <= 0.005 ? 'Przed praniem' : t >= 0.995 ? 'Po praniu' : `Pranie · ${Math.round(t * 100)}%`;
+      if (text !== lastText) { status.textContent = text; lastText = text; }
+    }
+
+    function tick() {
+      raf = 0;
+      current = reduce.matches ? target : current + (target - current) * 0.18;
+      if (Math.abs(target - current) < 0.0008) current = target;
+      render(current);
+      if (current !== target) raf = requestAnimationFrame(tick);
+    }
+
+    function onScroll() {
+      const r = hero!.getBoundingClientRect();
+      const run = hero!.offsetHeight - stage.offsetHeight;
+      const p = run > 0 ? clamp(-r.top / run) : 0;
+      target = clamp((p - START) / (END - START));
+      if (!raf) raf = requestAnimationFrame(tick);
+    }
+
+    layout();
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => { layout(); render(current); });
+    document.fonts?.ready.then(() => { layout(); render(current); });
+
+    // switch to the canvas once both photos are decoded; until then the dirty photo shows on its own
+    if (ctx && lctx && mctx) {
+      Promise.all([cleanImg.decode(), dirtyImg.decode()]).then(() => {
+        ready = true;
+        prescale();
+        render(current);
+        photo.setAttribute('data-canvas', '');
+      }).catch(() => {});
+    }
+  }
+</script>
