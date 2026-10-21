@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import work from '../assets/img/praca-1.webp';
+import cert from '../assets/img/certyfikat.webp';
 import { handles, steps } from '../data/site';
 ---
 
@@ -16,7 +16,7 @@ import { handles, steps } from '../data/site';
       {steps.map(({ icon: Icon, ...s }, i) => <li class="step" style={`--i:${i}`}><h3><Icon class="icon" size={20} stroke-width={1.5} aria-hidden="true" />{s.title}</h3><p>{s.text}</p></li>)}
     </ol>
     <div class="media">
-      <figure class="frame"><Image src={work} alt="Pranie ekstrakcyjne niebieskiej kanapy dyszą ekstraktora" widths={[640, 960]} sizes="(max-width: 900px) 100vw, 55vw" /></figure>
+      <figure class="frame"><Image src={cert} alt="Certyfikat ukończenia praktycznego szkolenia z profesjonalnego czyszczenia mebli tapicerowanych i materacy" widths={[640, 960, 1400]} sizes="(max-width: 900px) 100vw, 55vw" /></figure>
       <div class="handles">
         <h3>Z czym sobie radzimy</h3>
         <ul>{handles.map(({ icon: Icon, text }) => <li><Icon class="icon" size={18} stroke-width={1.5} aria-hidden="true" />{text}</li>)}</ul>
@@ -41,7 +41,7 @@ import { handles, steps } from '../data/site';
   .step p { color: var(--ink-soft); font-size: 0.97rem; max-width: 22em; }
   .media { display: grid; grid-template-columns: 1.4fr 1fr; gap: 28px; align-items: end; }
   .media figure { margin: 0; }
-  .media :global(img) { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; filter: saturate(0.75); }
+  .media :global(img) { width: 100%; height: auto; }
   .handles h3 { font-size: 1.4rem; margin-bottom: 18px; }
   .handles ul { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 28px; }
   .handles li { break-inside: avoid; display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 0.97rem; }
