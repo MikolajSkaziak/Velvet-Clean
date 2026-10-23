@@ -11,8 +11,14 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
+  /** schema.org JSON-LD for this page */
+  schema?: Record<string, unknown>;
+  noindex?: boolean;
 }
-const { title, description } = Astro.props;
+const { title, description, schema, noindex = false } = Astro.props;
+// with build.format 'file' the build sees /index.html and /x.html; the public URLs are / and /x
+const canonical = new URL(Astro.url.pathname.replace(/(index)?\.html$/, ''), Astro.site).href;
+const ogImage = new URL('/og.jpg', Astro.site).href;
 ---
 
 <!doctype html>
@@ -23,8 +29,24 @@ const { title, description } = Astro.props;
     <meta name="theme-color" content="#ede7dd" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:site_name" content="Velvet Clean" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logo Velvet Clean i niebieska kanapa po praniu" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />}
   </head>
   <body>
     <a class="skip" href="#top">Przejdź do treści</a>

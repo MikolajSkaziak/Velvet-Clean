@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CallBar from '../components/CallBar.astro';
+import { contact } from '../data/site';
+---
+
+<Base title="Nie ma takiej strony · Velvet Clean" description="Ta strona nie istnieje. Pranie tapicerki w Kaliszu i okolicach." noindex>
+  <Header />
+  <main id="top" class="wrap missing">
+    <hr class="stitch" />
+    <h1>Nie ma takiej strony</h1>
+    <p class="muted">Link mógł się zmienić. Wszystko o praniu tapicerki znajdziesz na stronie głównej, a wycenę dostaniesz pod numerem {contact.phoneDisplay}.</p>
+    <p><a class="link" href="/">Wróć na stronę główną</a></p>
+  </main>
+  <Footer />
+  <CallBar />
+</Base>
+
+<style>
+  .missing { padding-block: clamp(56px, 8vw, 104px); display: grid; gap: 20px; justify-items: start; }
+  .missing > .stitch { justify-self: stretch; margin-bottom: clamp(20px, 4vw, 52px); }
+  h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); letter-spacing: 0.08em; }
+  .muted { max-width: 44ch; }
+</style>

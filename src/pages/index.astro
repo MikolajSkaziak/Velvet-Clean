@@ -11,12 +11,50 @@ import Faq from '../components/Faq.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import CallBar from '../components/CallBar.astro';
+import { contact, faq, prices } from '../data/site';
+
+const title = 'Velvet Clean · Pranie tapicerki Kalisz';
+const description = 'Pranie tapicerki u Ciebie w domu: kanapy, narożniki, materace, fotele i wnętrza aut. Kalisz i okolice, dojazd i suszenie w cenie.';
+const home = new URL('/', Astro.site).href;
+
+// No aggregateRating: Google ignores self-published review markup for a business about itself.
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'LocalBusiness',
+      '@id': `${home}#firma`,
+      name: 'Velvet Clean',
+      description,
+      url: home,
+      image: new URL('/og.jpg', Astro.site).href,
+      logo: new URL('/apple-touch-icon.png', Astro.site).href,
+      telephone: contact.phoneIntl.replaceAll(' ', ''),
+      priceRange: `od ${Math.min(...prices.flatMap((p) => p.from ?? []))} zł`,
+      address: { '@type': 'PostalAddress', streetAddress: 'ul. Górnośląska', postalCode: '62-800', addressLocality: 'Kalisz', addressCountry: 'PL' },
+      areaServed: { '@type': 'City', name: 'Kalisz' },
+      hasMap: contact.googleMaps,
+      sameAs: [contact.facebook, contact.googleMaps],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Pranie tapicerki',
+        itemListElement: prices.map((p) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: `Pranie: ${p.name.toLowerCase()}`, description: p.note },
+          ...(p.from && { priceSpecification: { '@type': 'PriceSpecification', minPrice: p.from, priceCurrency: 'PLN' } }),
+        })),
+      },
+    },
+    { '@type': 'WebSite', '@id': `${home}#strona`, url: home, name: 'Velvet Clean', inLanguage: 'pl-PL', publisher: { '@id': `${home}#firma` } },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    },
+  ],
+};
 ---
 
-<Base
-  title="Velvet Clean · Pranie tapicerki Kalisz"
-  description="Pranie tapicerki u Ciebie w domu: kanapy, narożniki, materace, fotele i wnętrza aut. Kalisz i okolice, dojazd i suszenie w cenie."
->
+<Base title={title} description={description} schema={schema}>
   <Header />
   <main id="top">
     <Hero />
