@@ -2,6 +2,8 @@
   "name": "velvet-clean",
   "main": "worker/index.js",
   "compatibility_date": "2026-10-01",
+  // wrangler builds the site itself before every deploy, so ./dist exists in Workers Builds too
+  "build": { "command": "npm run build" },
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
