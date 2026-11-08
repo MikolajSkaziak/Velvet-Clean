@@ -27,9 +27,9 @@ Uzupełnienie z postów FB: fotele „uszak” i pufy, krzesła, dywany, pełne 
 ## Ceny ⚠️ niespójne, do potwierdzenia
 | Usługa | Ulotka fb-068 | Długi post FB | Inne |
 |---|---|---|---|
-| Kanapa | od 120 zł | od 150 zł | post: „ceny od 50 zł” |
-| Narożnik | od 180 zł | od 180 zł | |
-| Materac | od 200 zł | od 80 zł | |
+| Kanapa | od 180 zł | od 150 zł | post: „ceny od 50 zł” |
+| Narożnik | od 200 zł | od 180 zł | |
+| Materac | od 150 zł | od 80 zł | |
 | Auto (kompleksowo) | — | od 200 zł | |
 | Fotel / krzesło / dywan | — | — | |
 
