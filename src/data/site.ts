@@ -69,9 +69,9 @@ export const pairs: Pair[] = [
 
 /** Prices are "od" (from) amounts from the client's flyer; still to be confirmed by the owner. */
 export const prices = [
-  { icon: Sofa, name: 'Kanapy i sofy', note: 'Plamy, zabrudzenia i zapachy z codziennego używania.', from: 120 },
-  { icon: Puzzle, name: 'Narożniki', note: 'Duże zestawy, także tkaniny typu flok i welur.', from: 180 },
-  { icon: BedDouble, name: 'Materace', note: 'Usuwamy roztocza i alergeny, dla zdrowszego snu.', from: 200 },
+  { icon: Sofa, name: 'Kanapy i sofy', note: 'Plamy, zabrudzenia i zapachy z codziennego używania.', from: 150 },
+  { icon: Puzzle, name: 'Narożniki', note: 'Duże zestawy, także tkaniny typu flok i welur.', from: 200 },
+  { icon: BedDouble, name: 'Materace', note: 'Usuwamy roztocza i alergeny, dla zdrowszego snu.', from: 150 },
   { icon: Car, name: 'Tapicerka samochodowa', note: 'Kompleksowe pranie wnętrza: fotele i kanapa tylna.', from: 200 },
   { icon: Armchair, name: 'Fotele, pufy, krzesła', note: 'Uszaki, fotele, pufy i krzesła tapicerowane.' },
   { icon: Grid3x3, name: 'Dywany i chodniki', note: 'Także dywany dziecięce.' },
