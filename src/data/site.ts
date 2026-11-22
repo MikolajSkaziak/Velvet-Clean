@@ -100,7 +100,7 @@ export const reviews = [
 ];
 
 export const faq = [
-  { icon: Wallet, q: 'Ile kosztuje pranie?', a: 'Kanapa od 120 zł, narożnik od 180 zł, materac od 200 zł, zawsze z suszeniem w cenie. Dokładną kwotę podamy po zdjęciu mebla.' },
+  { icon: Wallet, q: 'Ile kosztuje pranie?', a: 'Kanapa od 150 zł, narożnik od 200 zł, materac od 150 zł, zawsze z suszeniem w cenie. Dokładną kwotę podamy po zdjęciu mebla.' },
   { icon: Timer, q: 'Jak długo schnie mebel?', a: 'Odciągamy maksymalnie dużo wody i suszymy na miejscu, więc mebel jest gotowy do użytku po kilku godzinach.' },
   { icon: Baby, q: 'Czy środki są bezpieczne dla dzieci i zwierząt?', a: 'Tak. Używamy atestowanych środków, bezpiecznych dla dzieci i zwierząt.' },
   { icon: SprayCan, q: 'Czy usuniecie każdą plamę?', a: 'Radzimy sobie z większością plam, także z moczem zwierząt, pisakami i farbą. Przy bardzo starych plamach efekt zależy od tkaniny, a o tym uczciwie powiemy już przy wycenie.' },
