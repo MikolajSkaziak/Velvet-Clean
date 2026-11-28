@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
+import { services } from '../data/site';
 
-const pages = ['/', '/polityka-prywatnosci'];
+const pages = ['/', ...services.map((s) => `/${s.slug}`), '/polityka-prywatnosci'];
 
 export const GET: APIRoute = ({ site }) => {
   const urls = pages.map((path) => `  <url><loc>${new URL(path, site)}</loc></url>`).join('\n');

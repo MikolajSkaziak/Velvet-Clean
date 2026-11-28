@@ -23,7 +23,7 @@ import { contact, rating } from '../data/site';
     <span class="hint label" aria-hidden="true" data-hint><ArrowDown size={14} stroke-width={1.5} aria-hidden="true" />Przewiń, aby pociągnąć sznur</span>
 
     <div class="wrap copy">
-      <h1><span>Czystość,</span> <span>którą widać</span> <span>i czuć.</span></h1>
+      <h1><span class="kicker">Pranie tapicerki w Kaliszu</span><span>Czystość,</span> <span>którą widać</span> <span>i czuć.</span></h1>
       <p class="lede">Pranie tapicerki u Ciebie w domu: kanapy, narożniki, materace, fotele i wnętrza aut. {contact.area}, dojazd i suszenie w cenie.</p>
       <div class="actions">
         <a class="btn btn--primary" href={contact.tel}><Phone size={18} stroke-width={1.5} aria-hidden="true" />Zadzwoń · {contact.phoneDisplay}</a>
@@ -68,20 +68,24 @@ import { contact, rating } from '../data/site';
   .copy { position: relative; z-index: 3; height: 100%; display: grid; align-content: center; gap: 28px; padding-bottom: 12vh; }
   h1 { font-size: clamp(3.2rem, 6.2vw, 5.6rem); letter-spacing: 0.1em; line-height: 0.98; }
   h1 span { display: block; white-space: nowrap; }
+  /* the search phrase sits in the heading as a quiet kicker, so the tagline stays the visual headline */
+  h1 .kicker { font: 500 0.82rem/1.2 var(--text); letter-spacing: 0.24em; color: var(--ink-soft); margin-bottom: 0.9rem; }
   .lede { max-width: 30em; color: var(--ink-soft); font-size: 1.05rem; }
   .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 28px; }
   .rating { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; width: fit-content; min-height: 32px; }
 
   @media (max-width: 900px) {
     .hero { height: 210vh; }
-    .copy { align-content: start; padding: 28px 0 0; gap: 18px; height: auto; }
+    .copy { align-content: start; padding: 14px 0 0; gap: 18px; height: auto; }
     h1 { font-size: clamp(2.6rem, 12.4vw, 4rem); letter-spacing: 0.08em; }
+    h1 .kicker { font-size: 0.72rem; margin-bottom: 0.5rem; }
     .lede { font-size: 0.98rem; }
     .photo { top: auto; right: 10px; left: 10px; width: auto; bottom: 196px; transform: none; }
     .rating, .actions .link { display: none; }
     .status[data-idle] { opacity: 0; }
   }
-  @media (max-width: 900px) and (max-height: 720px) { .lede { display: none; } }
+  /* short phones: the sticky call bar already carries the call button, so the sofa gets the room */
+  @media (max-width: 900px) and (max-height: 720px) { .lede, .actions { display: none; } }
   @media (max-width: 380px) { h1 span { white-space: normal; } }
 </style>
 

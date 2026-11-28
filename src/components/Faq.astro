@@ -1,12 +1,18 @@
 ---
-import { faq } from '../data/site';
+import { faq as allFaq } from '../data/site';
+
+interface Props {
+  items?: typeof allFaq;
+  title?: string;
+}
+const { items = allFaq, title = 'Pytania' } = Astro.props;
 ---
 
 <section class="section" id="faq" aria-labelledby="h-faq">
   <div class="wrap faq">
-    <h2 id="h-faq">Pytania</h2>
+    <h2 id="h-faq">{title}</h2>
     <div class="list">
-      {faq.map(({ icon: Icon, ...f }) => <details><summary><Icon class="icon" size={20} stroke-width={1.5} aria-hidden="true" />{f.q}</summary><p>{f.a}</p></details>)}
+      {items.map(({ icon: Icon, ...f }) => <details><summary><Icon class="icon" size={20} stroke-width={1.5} aria-hidden="true" />{f.q}</summary><p>{f.a}</p></details>)}
     </div>
   </div>
 </section>

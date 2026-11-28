@@ -15,6 +15,13 @@ export default {
       return Response.redirect(url.toString(), 301);
     }
 
+    // one URL per page: /x/ and /x.html move to /x with a permanent redirect (the asset layer would answer 307)
+    const clean = url.pathname.replace(/\/index\.html$|\.html$/, '').replace(/(.)\/+$/, '$1') || '/';
+    if (clean !== url.pathname) {
+      url.pathname = clean;
+      return Response.redirect(url.toString(), 301);
+    }
+
     const response = await env.ASSETS.fetch(request);
     // hashed build files never change under the same name
     if (url.pathname.startsWith('/_astro/') && response.ok) {

@@ -1,6 +1,6 @@
 import type { ImageMetadata } from 'astro';
 import {
-  Armchair, Baby, BedDouble, Brush, Bug, CalendarDays, Camera, Car, Cat, Coffee, Dog, Droplets, Grid3x3, MapPin, Paintbrush, PawPrint, PenLine, Puzzle, Sofa, SprayCan, Timer, Wallet, Wind,
+  Armchair, Baby, BedDouble, Brush, Bug, CalendarDays, Camera, Car, Cat, Coffee, Dog, Droplets, Grid3x3, MapPin, Paintbrush, PawPrint, PenLine, Puzzle, Sofa, SprayCan, Timer, Truck, Wallet, Wind,
 } from '@lucide/astro';
 
 import materacPrzed from '../assets/img/pair-materac-przed.webp';
@@ -15,6 +15,14 @@ import autoPrzed from '../assets/img/pair-auto-przed.webp';
 import autoPo from '../assets/img/pair-auto-po.webp';
 import dywanPrzed from '../assets/img/pair-dywan-przed.webp';
 import dywanPo from '../assets/img/pair-dywan-po.webp';
+import krataPrzed from '../assets/img/pair-dywan-krata-przed.webp';
+import krataPo from '../assets/img/pair-dywan-krata-po.webp';
+import chodnikPrzed from '../assets/img/pair-chodnik-przed.webp';
+import chodnikPo from '../assets/img/pair-chodnik-po.webp';
+import autoKanapaPrzed from '../assets/img/pair-auto-kanapa-przed.webp';
+import autoKanapaPo from '../assets/img/pair-auto-kanapa-po.webp';
+import autoFotelPrzed from '../assets/img/pair-auto-fotel-przed.webp';
+import autoFotelPo from '../assets/img/pair-auto-fotel-po.webp';
 
 export const contact = {
   phoneDisplay: '539 459 182',
@@ -68,13 +76,13 @@ export const pairs: Pair[] = [
 ];
 
 /** Prices are "od" (from) amounts from the client's flyer; still to be confirmed by the owner. */
-export const prices = [
+export const prices: { icon: typeof Sofa; name: string; note: string; from?: number; href?: string }[] = [
   { icon: Sofa, name: 'Kanapy i sofy', note: 'Plamy, zabrudzenia i zapachy z codziennego używania.', from: 150 },
   { icon: Puzzle, name: 'Narożniki', note: 'Duże zestawy, także tkaniny typu flok i welur.', from: 200 },
   { icon: BedDouble, name: 'Materace', note: 'Usuwamy roztocza i alergeny, dla zdrowszego snu.', from: 150 },
-  { icon: Car, name: 'Tapicerka samochodowa', note: 'Kompleksowe pranie wnętrza: fotele i kanapa tylna.', from: 200 },
+  { icon: Car, name: 'Tapicerka samochodowa', note: 'Kompleksowe pranie wnętrza: fotele i kanapa tylna.', from: 200, href: '/pranie-tapicerki-samochodowej-kalisz' },
   { icon: Armchair, name: 'Fotele, pufy, krzesła', note: 'Uszaki, fotele, pufy i krzesła tapicerowane.' },
-  { icon: Grid3x3, name: 'Dywany i chodniki', note: 'Także dywany dziecięce.' },
+  { icon: Grid3x3, name: 'Dywany i chodniki', note: 'Pierzemy na miejscu, także dywany dziecięce.', href: '/pranie-dywanow-kalisz' },
 ];
 
 export const steps = [
@@ -105,4 +113,89 @@ export const faq = [
   { icon: Baby, q: 'Czy środki są bezpieczne dla dzieci i zwierząt?', a: 'Tak. Używamy atestowanych środków, bezpiecznych dla dzieci i zwierząt.' },
   { icon: SprayCan, q: 'Czy usuniecie każdą plamę?', a: 'Radzimy sobie z większością plam, także z moczem zwierząt, pisakami i farbą. Przy bardzo starych plamach efekt zależy od tkaniny, a o tym uczciwie powiemy już przy wycenie.' },
   { icon: MapPin, q: 'Gdzie dojeżdżacie?', a: 'Działamy w Kaliszu i okolicach. Dojazd do klienta jest gratis.' },
+];
+
+/**
+ * Service pages, one per search demand that Search Console shows (Oct–Nov 2026):
+ * "pranie dywanów kalisz" and "pranie tapicerki samochodowej kalisz" were the top queries
+ * while the home page spoke mostly about sofas. Every claim here comes from the owner's
+ * own posts or the home page; nothing new is promised.
+ */
+export interface Service {
+  slug: string;
+  /** <title>, keyword first, brand last */
+  title: string;
+  description: string;
+  kicker: string;
+  h1: string;
+  lede: string;
+  /** "od" price in zł; undefined = quote from a photo */
+  from?: number;
+  serviceType: string;
+  includes: string[];
+  pairs: Pair[];
+  faq: { icon: typeof Sofa; q: string; a: string }[];
+}
+
+const rugPair = pairs.find((p) => p.furniture === 'Dywan')!;
+const carPair = pairs.find((p) => p.furniture === 'Auto')!;
+
+export const services: Service[] = [
+  {
+    slug: 'pranie-dywanow-kalisz',
+    title: 'Pranie dywanów Kalisz · u Ciebie w domu | Velvet Clean',
+    description: 'Pranie dywanów i chodników w Kaliszu i okolicach. Przyjeżdżamy i pierzemy na miejscu, dywanu nie trzeba nigdzie wozić. Dojazd gratis, cenę podamy ze zdjęcia.',
+    kicker: 'Pranie dywanów · Kalisz',
+    h1: 'Pranie dywanów w Kaliszu',
+    lede: 'Pierzemy dywany i chodniki u Ciebie w domu, metodą ekstrakcyjną. Nie trzeba ich nigdzie wozić. W Kaliszu i okolicach dojazd gratis, suszenie w cenie.',
+    serviceType: 'Pranie dywanów',
+    includes: [
+      'Dywany pokojowe, owalne i prostokątne',
+      'Chodniki i dywaniki',
+      'Dywany dziecięce',
+      'Kurz, plamy i codzienny brud',
+      'Sierść i mocz zwierząt',
+      'Zapachy, także po kocie',
+    ],
+    pairs: [
+      rugPair,
+      { furniture: 'Dywan', problem: 'Szary nalot', before: krataPrzed, after: krataPo, beforeAlt: 'Czarny dywan w białą kratę przed praniem, przyszarzały', afterAlt: 'Ten sam dywan w kratę po praniu, z czystymi białymi pasami' },
+      { furniture: 'Chodnik', problem: 'Zszarzałe runo', before: chodnikPrzed, after: chodnikPo, beforeAlt: 'Brązowy chodnik we wzory przed praniem', afterAlt: 'Ten sam chodnik po praniu, kolory są wyraźniejsze' },
+    ],
+    faq: [
+      { icon: Truck, q: 'Czy dywan trzeba oddać do pralni?', a: 'Nie. Przyjeżdżamy do Ciebie i pierzemy dywan na miejscu, metodą ekstrakcyjną. W Kaliszu i okolicach dojazd jest gratis.' },
+      { icon: Wallet, q: 'Ile kosztuje pranie dywanu?', a: 'To zależy od wielkości dywanu i od tego, jak bardzo jest brudny. Wyślij zdjęcie na WhatsApp albo Messengera, cenę podamy w kilka minut.' },
+      { icon: Timer, q: 'Jak długo schnie dywan?', a: 'Zwykle kilka godzin. Odciągamy jak najwięcej wody i suszymy na miejscu. Gruby dywan może schnąć dłużej, powiemy to przy wycenie.' },
+      { icon: Baby, q: 'Czy pierzecie dywany dziecięce?', a: 'Tak. Używamy atestowanych środków, bezpiecznych dla dzieci i zwierząt.' },
+    ],
+  },
+  {
+    slug: 'pranie-tapicerki-samochodowej-kalisz',
+    title: 'Pranie tapicerki samochodowej Kalisz | Velvet Clean',
+    description: 'Pranie tapicerki samochodowej w Kaliszu i okolicach: przednie fotele i tylna kanapa. Przyjeżdżamy tam, gdzie stoi auto. Od 200 zł, dojazd gratis.',
+    kicker: 'Tapicerka samochodowa · Kalisz',
+    h1: 'Pranie tapicerki samochodowej w Kaliszu',
+    lede: 'Pierzemy przednie fotele i tylną kanapę metodą ekstrakcyjną. Przyjeżdżamy tam, gdzie stoi samochód. Od 200 zł, w Kaliszu i okolicach dojazd gratis.',
+    from: 200,
+    serviceType: 'Pranie tapicerki samochodowej',
+    includes: [
+      'Przednie fotele',
+      'Tylna kanapa',
+      'Uporczywe plamy',
+      'Sierść zwierząt',
+      'Kurz i codzienny brud',
+      'Zapachy we wnętrzu',
+    ],
+    pairs: [
+      carPair,
+      { furniture: 'Auto', problem: 'Zacieki i brud', before: autoKanapaPrzed, after: autoKanapaPo, beforeAlt: 'Jasna tylna kanapa samochodu z ciemnymi zaciekami przed praniem', afterAlt: 'Ta sama jasna kanapa samochodu po praniu' },
+      { furniture: 'Auto', problem: 'Kurz i plamy', before: autoFotelPrzed, after: autoFotelPo, beforeAlt: 'Szary fotel samochodowy z zabrudzeniami przed praniem', afterAlt: 'Ten sam fotel samochodowy po praniu' },
+    ],
+    faq: [
+      { icon: Car, q: 'Co obejmuje pranie tapicerki samochodowej?', a: 'Przednie fotele i tylną kanapę. Jeśli chodzi Ci o coś więcej, napisz, co jest do wyprania.' },
+      { icon: Wallet, q: 'Ile kosztuje pranie tapicerki w aucie?', a: 'Od 200 zł. Dokładną cenę podamy po zdjęciu wnętrza, bo zależy od wielkości auta i od tego, jak bardzo jest brudne.' },
+      { icon: MapPin, q: 'Czy muszę gdzieś przyjechać autem?', a: 'Nie. Przyjeżdżamy do Ciebie, tam gdzie stoi auto. W Kaliszu i okolicach dojazd jest gratis.' },
+      { icon: Timer, q: 'Kiedy mogę wsiąść do auta?', a: 'Po kilku godzinach. Odciągamy z tapicerki jak najwięcej wody, więc nie schnie długo.' },
+    ],
+  },
 ];

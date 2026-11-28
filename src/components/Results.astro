@@ -1,20 +1,31 @@
 ---
 import { ArrowLeft, ArrowRight } from '@lucide/astro';
 import { Image } from 'astro:assets';
-import { contact, pairs } from '../data/site';
+import { contact, pairs as allPairs, type Pair } from '../data/site';
+
+interface Props {
+  items?: Pair[];
+  title?: string;
+  intro?: string;
+}
+const {
+  items = allPairs,
+  title = 'Przed i po',
+  intro = 'Prawdziwe realizacje z Kalisza i okolic, sfotografowane telefonem na miejscu, tuż przed praniem i zaraz po nim.',
+} = Astro.props;
 ---
 
 <section class="section" id="realizacje" aria-labelledby="h-realizacje">
   <div class="wrap">
     <hr class="stitch" />
     <div class="head">
-      <h2 id="h-realizacje">Przed i po</h2>
-      <p class="muted">Prawdziwe realizacje z Kalisza i okolic, sfotografowane telefonem na miejscu, tuż przed praniem i zaraz po nim.</p>
+      <h2 id="h-realizacje">{title}</h2>
+      <p class="muted">{intro}</p>
     </div>
     <div class="rail">
       <span class="rail__line" aria-hidden="true"></span>
       <div class="track" data-rail tabindex="0" role="region" aria-label="Realizacje przed i po, przewiń w bok">
-        {pairs.map((p) => (
+        {items.map((p) => (
           <figure class="piece">
             <div class="frame piece__frame">
               <div>
